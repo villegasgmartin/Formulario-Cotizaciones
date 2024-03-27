@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+
+    
+
+    <form action="">
+        <div class="select-cantidad">
+            <label for="">Necesito una cobertura para...</label>
+            <div class="custom-select" id="select-cantidad">
+                <div class="divoption" data-value="mi">Mi</div>
+                <div class="divoption" data-value="pareja">Mi Pareja y Yo</div>
+                <div class="divoption" data-value="hijos">Mis hijos y yo</div>
+                <div class="divoption" data-value="familia">Mi familia y yo</div>
+            </div>
+            <span for="">Tengo</span><input type="number" name=""  min="0" max="100" id="edad"><span>años</span>
+
+        </div>
+        <div class="condicional">
+            <div class="pareja">
+                <span for="">Mi pareja tiene</span><input type="number" name="" id="" min="0" max="100"><span>años</span>
+            </div>
+            <div class="hijos">
+                <div class="cantidad-hijos">
+                    <label for="">Cantidad de hijos menores de 21 años</label>
+                    <input type="number" name="hijos" id="" min="0" max="10">
+                </div>
+                <div class="cantidad-hijos">
+                    <label for="">Cantidad de hijos mayores de 21 años</label>
+                    <input type="number" name="hijos" id="" min="0" max="10">
+                </div>
+            </div>
+            <div class="familia">
+                <div>
+                    <span for="">Mi pareja tiene</span><input type="number" name="" id=""><span>años</span>
+                </div>
+             
+                <div class="hijos">
+                    <div class="cantidad-hijos">
+                        <label for="">Cantidad de hijos menores de 21 años</label>
+                        <input type="number" name="hijos" id="" min="0" max="10">
+                    </div>
+                    <div class="cantidad-hijos">
+                        <label for="">Cantidad de hijos mayores de 21 años</label>
+                        <input type="number" name="hijos" id="" min="0" max="10">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div>
+            <span>Vivo en </span><select name="" id="select-localidad">
+                <option  id="placeholder" value="0" disabled selected>Selecciona una opción</option>
+                <option value="ROSARIO">-</option>
+                <option value="ROSARIO">Rosario</option>
+                <option value="FUNES">Funes</option>
+                <option value="ROLDAN">Roldan</option>
+                <option value="SAN NICOLAS">San Nicolas</option>
+                <option value="ARROYO SECO">Arroyo Seco</option>
+                <option value="PUEBLO ESTHER">Pueblo ESTHER</option>
+                <option value="GRANADERO BAIGORRIA">Granadero Baigorria</option>
+                <option value="PEREZ">Perez</option>
+                <option value="ACEBAL">Acebal</option>
+                <option value="otra">Otra</option>
+            </select>
+        </div>
+        
+
+        <div class="localidad">
+            <label for="">Escriba Su localidad</label>
+            <input type="text" name="localidad" id="localidad">
+        </div>
+        
+        <div>
+            <span>Trabajo como</span>
+            <select name="" id="selectAfip">
+                <option id="placeholder" value="0" disabled selected>Selecciona una opción</option>
+                <option value="-">-</option>
+                <option value="particular">Particular</option>
+                <option value="monotributo">Monotributista</option>
+                <option value="sueldo">En relacion de dependecia</option>
+            </select>
+        </div>
+       
+        <div class="sueldo-bruto">
+            <label for="">Coloque su sueldo bruto</label>
+            <input type="number" id="sueldo">
+        </div>
+        
+        <div class="monotributista">
+            <select name="" id="">
+                <option value="a,b,c">Categorias A,B,C</option>
+                <option value="d">Categorias D</option>
+                <option value="h">Categorias H</option>
+                <option value="f">Categorias F</option>
+                <option value="g">Categorias G</option>
+                <option value="i">Categorias I</option>
+            </select>
+            <input type="number" id="tipo-monutributo" disabled>
+        </div>
+        <div class="particular">
+            <select name="" id="cobertura-particular">
+                <option value="Prevencion Salud">Prevencion Salud</option>
+                <option value="Avalian">Avalian</option>
+                <option value="Omint">Omint</option>
+                <option value="Swiss Medical">Swiss Medical</option>
+                <option value="Medife">Medife</option>
+                <option value="Osde">Osde</option>
+                <option value="Galeno">Galeno</option>
+                <option value="Esencial">Esencial</option>
+                <option value="Plenit">Plenit</option>
+                <option value="Medicus">Medicus</option>
+                <option value="Medicyn">Medicyn</option>
+                <option value="Alianza Medica">Alianza Medica</option>
+                <option value="Integral Salud">Integral Salud</option>
+                <option value="Demi Salud">Demi Salud</option>
+                <option value="Obra social sindical">Obra social sindical</option>
+                <option value="Otra">Otra:</option>
+            </select>
+        </div>
+        <div class="obra-social">
+            <label for="">Escriba Su Obra Social</label>
+            <input type="text" name="obrasocial" id="cobertura">
+        </div>
+
+        <input type="submit" value="Buscar y Comparar Planes">
+
+    </form>
+    <div id="planesDiv"></div>
+
+    
+
+    <script src="index.js"></script>
+</body>
+</html>

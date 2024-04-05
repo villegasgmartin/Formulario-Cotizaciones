@@ -1,7 +1,15 @@
 const { response } = require('express');
 const bcrypt = require('bcryptjs');
 const pool = require('../database');
+const { persona,
+        costo,
+        encontrarNumeroMasGrande,
+         aportesMonotributista } = require('../middlewares/TipoyValor');
+const {
+    coberturaSeleccionas
+} = require('../middlewares/coberturas');
 
+const {obtenerDescripcion} = require('../helpers/descripciones');
 const getHome = (req, res=response) => {
     console.log('hola mundo');
 }
@@ -25,7 +33,7 @@ const getHome = (req, res=response) => {
 
 const coberturasDisponibles = async (req, res) => {
     //valores que vienen del formulario
-    let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo } = req.body
+    let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo } = req.body
 
     //localidad
 
@@ -56,23 +64,20 @@ const coberturasDisponibles = async (req, res) => {
     if(tipo =='mi'){
         tipo = 'Individuo'
     }
-
+    
 
     //tributo
 
     if (tributo ==='monotributo' || tributo === 'sueldo'){
         tributo = 'Sueldo'
     }
-
-
-
-   
+  
     try {
         console.log(tributo)
         //primer condicionante localidad y sueldo
         if (tributo != 'particular'){
             
-
+            
             
         console.log(tipo)
             
@@ -80,16 +85,15 @@ const coberturasDisponibles = async (req, res) => {
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasSueldo
 
             sqlQuery = `
-            SELECT plan, NombrePlan 
+            SELECT plan, NombrePlan
             FROM cotizaciones 
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND Tipo_Individuo = ?
-            AND tributo <> 'particular'`;
-            
+            AND tributo <> 'Particular'`;
         // Parámetros para la consulta SQL
-            params = [...opcionLocalidad, edad, edad, tipo];
+        params = [...opcionLocalidad, edad, edad];
+      
 
             console.log(params)
         }
@@ -105,20 +109,60 @@ const coberturasDisponibles = async (req, res) => {
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND Tipo_Individuo = ?
             AND tributo <> 'Sueldo'`;
         
         // Parámetros para la consulta SQL
-            params = [...opcionLocalidad, edad, edad, tipo];
+            params = [...opcionLocalidad, edad, edad];
         }
 
         //condicional 
         const result = await pool.query(sqlQuery, params);
         const coberturas = result[0]
-            return res.status(200).json(coberturas);
-        
+    
+       const CoberturasPropuestasSet = new Set();
+
+       for (let i = 0; i < coberturas.length; i++) {
+           let cantidad = 0;
+           let descuento = 0;
+       
+           if (!edadPareja) {
+               edadPareja = 0;
+           }
+       
+           const cobertura = coberturas[i];
+           const { plan, NombrePlan } = cobertura;
+       
+           // Llama a la función persona con los parámetros necesarios
+           const tipoPersona = persona(tipo, hijosMayores, plan, NombrePlan);
+
+           //agregar la descripcion en funcion del plan
         
 
+
+           const descripcion = obtenerDescripcion(plan, NombrePlan)
+          console.log('paso1', descripcion)
+           
+           // Llama a la función coberturaSeleccionas para obtener los planes seleccionados
+           const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
+       
+           // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
+           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo);
+         
+           // Agrega la cobertura propuesta al conjunto CoberturasPropuestasSet
+           CoberturasPropuestasSet.add(JSON.stringify({
+               plan: plan,
+               NombrePlan: NombrePlan,
+               descripcion:descripcion,
+               valor: valorCobertura,
+
+           }));
+       }
+       
+       // Convertir el conjunto en un arreglo nuevamente para poder enviarlo como JSON
+       const CoberturasPropuestas = Array.from(CoberturasPropuestasSet).map(cobertura => JSON.parse(cobertura));
+       
+       // Devuelve las coberturas propuestas en formato JSON
+       return res.status(200).json(CoberturasPropuestas);
 
     } catch (error) {
         res.status(500).json(error);

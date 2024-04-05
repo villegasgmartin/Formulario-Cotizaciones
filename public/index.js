@@ -10,9 +10,7 @@ const coberturasPlanes = {
                 <li>Prestadores seleccionados</li>
                 <li>Muchos beneficios mas</li>
                 </ul>`,
-                valor,
-                descuento: 0.55,
-                coeficiente: 6.5  
+
         },
         Integral:{
             descripcion:`<ul class="descripcion">
@@ -22,9 +20,7 @@ const coberturasPlanes = {
             <li>Mas prestadores en cartilla</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.55,
-            coeficiente: 6.5 
+
         },
         Superior:{
             descripcion:`<ul class="descripcion">
@@ -34,9 +30,7 @@ const coberturasPlanes = {
             <li>Mas prestadores en cartilla</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.55,
-            coeficiente: 6.5 
+
         }
         
     },
@@ -49,9 +43,7 @@ const coberturasPlanes = {
             <li>Ortodoncias hasta los 18 años</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.5,
-            coeficiente: 6.5 
+
         },
         A2:{
             descripcion:`<ul class="descripcion">
@@ -62,9 +54,8 @@ const coberturasPlanes = {
             <li>Ortodoncias hasta los 35 años</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.5,
-            coeficiente: 6.5  
+
+
         },
         A2CP:{
             descripcion:`<ul class="descripcion">
@@ -75,18 +66,10 @@ const coberturasPlanes = {
             <li>Ortodoncias hasta los 35 años</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.5,
-            coeficiente: 6.5  
+
         }
     },
     BritanicaSalud:{
-        Pulso:{
-            descripcion,
-            valor,
-            descuento: 0.75,
-            coeficiente: 7.05   
-        },
         BS100:{
             descripcion:`<ul class="descripcion">
             <li>Con coseguros</li>
@@ -95,9 +78,7 @@ const coberturasPlanes = {
             <li>Prestadores seleccionados (Sanatorio de niños grupo oroño)</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: [0.65, 0.85, 0.9],
-            coeficiente: 7.05   
+
         },
         BS180:{
             descripcion:`<ul class="descripcion">
@@ -107,16 +88,9 @@ const coberturasPlanes = {
             <li>Mas prestadores en cartilla</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: [0.75, 0.85, 0.9],
-            coeficiente: 7.05     
+ 
         },
-        BSAMAYOR:{
-            descripcion,
-            valor,
-            descuento: 0.9,
-            coeficiente: 7.05   
-        },
+    
     },
     AlianzaMedica:{
         PLAN100:{
@@ -127,9 +101,7 @@ const coberturasPlanes = {
             <li>Amplia cartilla de prestadores</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 1,
-            coeficiente: 7.09 
+        
         }
     },
     OMINT:{
@@ -141,9 +113,7 @@ const coberturasPlanes = {
             <li>Prestadores seleccionados</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento: 0.85,
-            coeficiente: 6.5 
+            
         },
         PLAN2500:{
             descripcion:`<ul class="descripcion">
@@ -153,7 +123,7 @@ const coberturasPlanes = {
             <li>Más prestadores en cartilla</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor
+          
         }
     },
     integralSalud:{
@@ -165,9 +135,7 @@ const coberturasPlanes = {
             <li>Amplia cartilla de prestadores</li>
             <li>Muchos beneficios mas</li>
             </ul>`,
-            valor,
-            descuento : 1,
-            coeficiente: 7.09 
+            
         }
     }
 }

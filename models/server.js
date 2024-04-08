@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const {path, join} = require('path');
-
+const bodyParser = require('body-parser');
 
 class Server {
 	constructor() {
@@ -23,6 +23,10 @@ class Server {
 
 	middelewares() {
 
+		this.app.set('view engine', 'hbs');
+
+		this.app.use(bodyParser.urlencoded({ extended: true }));
+		this.app.use(bodyParser.json());
 		//directorio static
 		this.app.use(express.static(join(__dirname,'../public')));
 

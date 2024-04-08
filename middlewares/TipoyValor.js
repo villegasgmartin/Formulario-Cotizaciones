@@ -116,54 +116,87 @@ return tipo;
 //CATEGORIA G		APORTES: *$5100 X PERSONA
 //CATEGORIA H		APORTES: *$6300 X PERSONA
 
-const aportesMonotributista = (monutributo)=>{
-    
+function aportesMonotributista (monutributo){
+    console.log(monutributo);
     switch (monutributo) {
         case 'Categorias A,B,C':
-            aporte = 3500
+            descuento = 3500
             break;
         case 'Categorias D':
-                aporte = 4100
+                descuento = 4100
             break;
         case 'Categorias H':
-                aporte = 4400
+                descuento = 4400
             break;
         case 'Categorias F':
-                aporte = 4900
+                descuento = 4900
             break;
         case 'Categorias G':
-            aporte = 5100
+            descuento = 5100
                 break;
         case 'Categorias I':
-            aporte = 6300
+            descuento = 6300
                 break;
-        default:
-            break;
-    }
-    return aporte
-}
-
-
-//descuentos de britanica
-const descuentosBritanica = (NombrePlan)=>{
-    switch (NombrePlan) {
-        case 'BS100':
-           console.log(valorCobertura);nto = 0.65
-            break;
-        case 'BS180':
-            descuento = 0.75
-            break;
-        case 'Pulso':
-            descuento = 0.75
-            break;
-        case 'BS A Mayor':
-            descuento = 0.9
-            break;
-
         default:
             break;
     }
     return descuento
+
+}
+function aportesSueldoBruto (SueldoBruto, plan){
+    console.log(SueldoBruto, plan);
+    switch (plan) {
+        case 'Integral Salud':
+            descuentoSueldo = SueldoBruto * 0.0709
+            break;
+        case 'Alianza Medica':
+            descuentoSueldo = SueldoBruto * 0.0709
+            break;
+        case 'Prevencion Salud':
+            descuentoSueldo = SueldoBruto * 0.065
+            break;
+        case 'OMINT':
+            descuentoSueldo = SueldoBruto * 0.065
+            break;
+        case 'Britanica Salud':
+            descuentoSueldo = SueldoBruto * 0.0705
+                break;
+        case 'Britanica':
+            descuentoSueldo = SueldoBruto * 0.0705
+                break;
+        case 'Avalian':
+            descuentoSueldo = SueldoBruto * 0.065
+                break;
+        default:
+            break;
+
+    }
+    console.log(descuentoSueldo)
+    return descuentoSueldo
+
+}
+
+
+//descuentos de britanica
+function descuentosBritanica (NombrePlan){
+    switch (NombrePlan) {
+        case 'BS100':
+           bonificacion = 0.65
+            break;
+        case 'BS180':
+            bonificacion = 0.75
+            break;
+        case 'Pulso':
+            bonificacion = 0.75
+            break;
+        case 'BS A Mayor':
+            bonificacion = 0.9
+            break;
+
+        default:
+            break;
+    }
+    return bonificacion
 }
 
 
@@ -171,7 +204,7 @@ function encontrarNumeroMasGrande(num1, num2) {
     return num1 > num2 ? num1 : num2;
 }
 
-const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo)=>{
+const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto)=>{
 
     queryGeneral = `SELECT Cotizacion FROM cotizaciones 
     WHERE plan = ?
@@ -189,12 +222,23 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     if(plan=='Integral Salud'){
  
         params = [plan, NombrePlan,edad, edad, tipo,tributo]
-        console.log(params)
+        
         const valorIncial = await pool.query(queryGeneral, params)
         
         price = parseFloat(valorIncial[0][0].Cotizacion);
      
-        return price
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+
+        return Math.round(price - descuento - descuentoSueldo)
     }
     //plan=='Prevencion Salud'*********************
     if(plan=='Prevencion Salud'){
@@ -205,15 +249,29 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         const valorIncial = await pool.query(queryGeneral, params)
         price = parseFloat(valorIncial[0][0].Cotizacion);
        
-        return price
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+
+        let costo = price - descuento - descuentoSueldo
+        return Math.round(costo * 0.5)
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
     
         params1 = [plan, NombrePlan,edad, edad, tipo,tributo]
-
+        console.log(params1);
 
         const valorIncial1 = await pool.query(queryGeneral, params1)
+        console.log('omint',valorIncial1 )
         price1 = parseFloat(valorIncial1[0][0].Cotizacion);
         
 
@@ -231,7 +289,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         if(hijosMayores>0){
 
             params3 = [plan, NombrePlan,21, 21, 'HijoMayor',tributo]
-            console.log(params3)
+            
 
             const valorIncial3 = await pool.query(queryGeneral, params3)
            
@@ -240,21 +298,33 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             price3=0
         }
 
-        
+      
         
         let price = price1 + price2 + price3*hijosMayores  
 
 
         
-        return price
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+        let costo = price - descuento- descuentoSueldo
+        return Math.round(costo * 0.85)
     }
     //plan=='Britanica Salud'*********************
-    if(plan == 'Britanica Salud'){
+    if(plan == 'Britanica Salud' || plan == 'Britanica'){
 
-        console.log('britanica', tipo)
 
         if(tipo == 'Individuo'){
             params = [plan, NombrePlan,edad, edad, tipo,tributo]
+            console.log(params)
             const valorIncial4 = await pool.query(queryGeneral, params)
             price4 = parseFloat(valorIncial4[0][0].Cotizacion);
         }else{
@@ -299,10 +369,10 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             if( (NombrePlan !== 'Pulso' && NombrePlan !== 'BS A Mayor') && hijosMayores>1){
     
                 params = [plan, NombrePlan,21, 21, 'Hijos',tributo]
-                console.log('hijos',params)
+               
         
                 const valorIncial3 = await pool.query(queryGeneral, params)
-                console.log(valorIncial3);
+                
                 price3 = parseFloat(valorIncial3[0][0].Cotizacion);
                
     
@@ -312,12 +382,24 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         
        
        
-        console.log(price1, price2, price3)
+            if(tipoMonutributo){
+                descuento = aportesMonotributista(tipoMonutributo)
+            }else{
+                descuento = 0
+            }
+    
+            
+            if(sueldoBruto){
+                descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
 
+        bonificacion = descuentosBritanica(NombrePlan);
 
         
-        return price = price0 + price1 + price2 + price3 + price4
-        
+        let price = price0 + price1 + price2 + price3 + price4 - descuento - descuentoSueldo;
+        return Math.round(price * bonificacion);
     }
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
@@ -374,9 +456,20 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             price4 = 0;
             price5 = 0;
         }
-        console.log(price1, price2, price3, price4 , price5 )
-        return price = price1 + price2 + price3 + price4 + price5
-      
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+
+        
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+        let price = price1 + price2 + price3 + price4 + price5 - descuento -descuentoSueldo;
+        return Math.round(price  * 0.55);
     }
 
     if(plan=='Alianza Medica'){
@@ -401,8 +494,19 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }else{
             price3 = 0
         }
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
 
-        return price = price1 + price2 + price3
+        
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+        return price = Math.round(price1 + price2 + price3 - descuento - descuentoSueldo);
     }
 
     } catch (error) {
@@ -423,3 +527,4 @@ module.exports ={
     encontrarNumeroMasGrande,
     aportesMonotributista
 };
+

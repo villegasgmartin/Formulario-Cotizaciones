@@ -11,7 +11,7 @@ const {
 
 const {obtenerDescripcion} = require('../helpers/descripciones');
 const getHome = (req, res=response) => {
-    console.log('hola mundo');
+    res.render('form');
 }
 
 
@@ -31,31 +31,58 @@ const getHome = (req, res=response) => {
 //particular = Particular
 //sueldo = En relacion de dependecia  y Monotributista
 
+
+//descuentos por aportes
+// const aportesMonotributista1 = {
+//     a,b,c : 3500,
+//     d: 4100,
+//     h: 4400,
+//     f:4900,
+//     g:5100,
+//     i:6300
+// }
+
+// const descuento = (tipo, categoria, aporte, cobertura, plan, coeficiente )=>{
+//     console.log(tipo, categoria, aporte, plan, coeficiente)
+//     if (tipo=="monotributo"){
+//          descuento = aportesMonotributista1[categoria] 
+//          return descuento
+//     }
+//     if(tipo =='sueldo'){
+//         tresporcierto = (aporte * 0.03)/3
+//         descuento = tresporcierto * cobertura[plan][coeficiente]
+//         return descuento
+//     }
+// }
+
+
+
 const coberturasDisponibles = async (req, res) => {
     //valores que vienen del formulario
-    let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo } = req.body
+    let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto} = req.body
 
+
+    console.log(edad)
     //localidad
 
     const localidades = ['ROSARIO', 'FUNES', 'ROLDAN', 'SAN NICOLAS', 'SAN NICOLAS', 'PUEBLO ESTHER', 'GRANADERO BAIGORRIA', 'PEREZ', 'ACEBAL', 'OTRA']
 
-    localidad = localidad.toUpperCase();
-
+  
     //coberturas para otras localidad por situacion laboral
 
     const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Britanica Salud', 'Alianza Medica', 'Omint', 'Integral Salud']
 
-    const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica Salud', 'Alianza Medica']
+    const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica']
 
     const OTRAS = ['Avalian', 'Prevencion Salud', 'Omint', 'Alianza Medica' ]
     //****Hijos ****/
     //validacio si es que hay hijos
 
-    if(!hijosMayores){
-        hijosMayores = 0
+    if (hijosMayores.every(elemento => elemento === '')) {
+        hijosMayores = 0;
     }
-    if(!hijosMenores){
-        hijosMenores = 0
+    if (hijosMenores.every(elemento => elemento === '')) {
+        hijosMenores = 0;
     }
 
 
@@ -65,25 +92,35 @@ const coberturasDisponibles = async (req, res) => {
         tipo = 'Individuo'
     }
     
-
+    edad = parseInt(edad)
+    
+    if(edadPareja){
+        edadPareja = parseInt(edadPareja[0]);
+    }
+    
+    if(hijosMayores){
+        hijosMayores = parseInt(hijosMayores[0]);
+    }
+    if(hijosMenores){
+        hijosMenores = parseInt(hijosMenores[0]);
+    }
     //tributo
 
     if (tributo ==='monotributo' || tributo === 'sueldo'){
         tributo = 'Sueldo'
     }
-  
+
+
+
     try {
-        console.log(tributo)
+       
         //primer condicionante localidad y sueldo
         if (tributo != 'particular'){
-            
-            
-            
-        console.log(tipo)
-            
+              
+    
+
 
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasSueldo
-
             sqlQuery = `
             SELECT plan, NombrePlan
             FROM cotizaciones 
@@ -93,13 +130,11 @@ const coberturasDisponibles = async (req, res) => {
             AND tributo <> 'Particular'`;
         // Parámetros para la consulta SQL
         params = [...opcionLocalidad, edad, edad];
-      
-
             console.log(params)
         }
 
         //segundo condicionante localidad y particular
-        if (tributo === 'particular' && tipo != 'hijos' && tipo !='familia'){
+        if (tributo === 'particular'){
 
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasParticular
 
@@ -140,13 +175,13 @@ const coberturasDisponibles = async (req, res) => {
 
 
            const descripcion = obtenerDescripcion(plan, NombrePlan)
-          console.log('paso1', descripcion)
+          
            
            // Llama a la función coberturaSeleccionas para obtener los planes seleccionados
            const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
        
            // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
-           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo);
+           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto);
          
            // Agrega la cobertura propuesta al conjunto CoberturasPropuestasSet
            CoberturasPropuestasSet.add(JSON.stringify({
@@ -162,7 +197,7 @@ const coberturasDisponibles = async (req, res) => {
        const CoberturasPropuestas = Array.from(CoberturasPropuestasSet).map(cobertura => JSON.parse(cobertura));
        
        // Devuelve las coberturas propuestas en formato JSON
-       return res.status(200).json(CoberturasPropuestas);
+       return res.render('form', { CoberturasPropuestas });
 
     } catch (error) {
         res.status(500).json(error);

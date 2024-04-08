@@ -5,6 +5,6 @@ const router = Router();
 
 router.get('/', getHome)
 
-router.get('/coberturas', coberturasDisponibles); 
+router.post('/coberturas', coberturasDisponibles); 
 
 module.exports = router;

@@ -164,7 +164,7 @@ input[type="submit"]:hover, .mas-info-btn:hover{
 
 /*div contenedor planes */
 div.cobertura{
-    width: 200px;
+    width: 300px;
     text-align: center;
    
     border-radius: 20px;
@@ -179,8 +179,16 @@ div.cobertura{
     
 }
 .plan{
-    font-size: 14px;
-    text-transform: lowercase;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.costo{
+    font-weight: 700;
+    font-size: 20px;
+}
+.descripcion{
+    text-align: start;
 }
 
 div{

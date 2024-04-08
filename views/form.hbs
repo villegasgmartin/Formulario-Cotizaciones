@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+
+    
+
+    <form action="coberturas" method="POST">
+        <div class="select-cantidad">
+            <label for="">Necesito una cobertura para...</label>
+            <div class="custom-select" id="select-cantidad">
+                <div class="divoption" data-value="mi">Mi</div>
+                <div class="divoption" data-value="pareja">Mi Pareja y Yo</div>
+                <div class="divoption" data-value="hijos">Mis hijos y yo</div>
+                <div class="divoption" data-value="familia">Mi familia y yo</div>
+            </div>
+              <input type="hidden" name="tipo" id="tipo" value="">
+            <span for="edad">Tengo</span><input type="number" name="edad"  min="0" max="100" id="edad"><span>años</span>
+
+        </div>
+        <div class="condicional">
+            <div class="pareja">
+                <span for="">Mi pareja tiene</span><input type="number" name="edadPareja" id="" min="0" max="100"><span>años</span>
+            </div>
+            <div class="hijos">
+                <div class="cantidad-hijos">
+                    <label for="">Cantidad de hijos menores de 21 años</label>
+                    <input type="number" name="hijosMenores" id="" min="0" max="10">
+                </div>
+                <div class="cantidad-hijos">
+                    <label for="">Cantidad de hijos mayores de 21 años</label>
+                    <input type="number" name="hijosMayores" id="" min="0" max="10">
+                </div>
+            </div>
+            <div class="familia">
+                <div>
+                    <span for="">Mi pareja tiene</span><input type="number" name="edadPareja" id=""><span>años</span>
+                </div>
+             
+                <div class="hijos">
+                    <div class="cantidad-hijos">
+                        <label for="">Cantidad de hijos menores de 21 años</label>
+                        <input type="number" name="hijosMenores" id="" min="0" max="10">
+                    </div>
+                    <div class="cantidad-hijos">
+                        <label for="">Cantidad de hijos mayores de 21 años</label>
+                        <input type="number" name="hijosMayores" id="" min="0" max="10">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div>
+            <span>Vivo en </span><select name="localidad" id="select-localidad">
+                <option  id="placeholder" value="0" disabled selected>Selecciona una opción</option>
+                <option value="ROSARIO">-</option>
+                <option value="ROSARIO">Rosario</option>
+                <option value="FUNES">Funes</option>
+                <option value="ROLDAN">Roldan</option>
+                <option value="SAN NICOLAS">San Nicolas</option>
+                <option value="ARROYO SECO">Arroyo Seco</option>
+                <option value="PUEBLO ESTHER">Pueblo ESTHER</option>
+                <option value="GRANADERO BAIGORRIA">Granadero Baigorria</option>
+                <option value="PEREZ">Perez</option>
+                <option value="ACEBAL">Acebal</option>
+                <option value="OTRA">Otra</option>
+            </select>
+        </div>
+        
+
+        <div class="localidad">
+            <label for="">Escriba Su localidad</label>
+            <input type="text" name="localidad" id="localidad">
+        </div>
+        
+        <div>
+            <span>Trabajo como</span>
+            <select name="tributo" id="selectAfip">
+                <option id="placeholder" value="0" disabled selected>Selecciona una opción</option>
+                <option value="-">-</option>
+                <option value="particular">Particular</option>
+                <option value="monotributo">Monotributista</option>
+                <option value="sueldo">En relacion de dependecia</option>
+            </select>
+        </div>
+       
+        <div class="sueldo-bruto">
+            <label for="">Coloque su sueldo bruto</label>
+            <input type="number" id="sueldo" name="sueldoBruto">
+        </div>
+        
+        <div class="monotributista">
+            <select name="monutributo" id="">
+                <option value="Categorias A,B,C">Categorias A,B,C</option>
+                <option value="Categorias D">Categorias D</option>
+                <option value="Categorias H">Categorias H</option>
+                <option value="Categorias F">Categorias F</option>
+                <option value="Categorias G">Categorias G</option>
+                <option value="Categorias I">Categorias I</option>
+            </select>
+            <input type="number" id="tipo-monutributo" disabled>
+        </div>
+        <div class="particular">
+            <select name="coberturas" id="cobertura-particular">
+                <option value="Prevencion Salud">Prevencion Salud</option>
+                <option value="Avalian">Avalian</option>
+                <option value="Omint">Omint</option>
+                <option value="Swiss Medical">Swiss Medical</option>
+                <option value="Medife">Medife</option>
+                <option value="Osde">Osde</option>
+                <option value="Galeno">Galeno</option>
+                <option value="Esencial">Esencial</option>
+                <option value="Plenit">Plenit</option>
+                <option value="Medicus">Medicus</option>
+                <option value="Medicyn">Medicyn</option>
+                <option value="Alianza Medica">Alianza Medica</option>
+                <option value="Integral Salud">Integral Salud</option>
+                <option value="Demi Salud">Demi Salud</option>
+                <option value="Obra social sindical">Obra social sindical</option>
+                <option value="Otra">Otra:</option>
+            </select>
+        </div>
+        <div class="obra-social">
+            <label for="">Escriba Su Obra Social</label>
+            <input type="text" name="obrasocial" id="cobertura">
+        </div>
+
+        <input type="submit" value="Buscar y Comparar Planes">
+
+    </form>
+    <div id="planesDiv">
+            {{#each CoberturasPropuestas}}
+        <div class="cobertura">
+            <h2 class="nombre-comp">{{plan}}</h2>
+            <p class="plan">{{NombrePlan}}</p>
+            <p>{{{descripcion}}}</p>
+            <p class="costo"> {{valor}}</p>
+            <button class="mas-info-btn">Más Info</button>
+        </div>
+         {{/each}}
+    </div>
+
+    
+
+    <script src="index.js"></script>
+</body>
+</html>

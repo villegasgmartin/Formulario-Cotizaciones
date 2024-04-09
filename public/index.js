@@ -98,20 +98,24 @@ selectAfip.addEventListener('change', ()=>{
     let value = selectAfip.value;
     console.log(value);
 
-    if ( value == 'particular' || value == 'sueldo'){
+    if ( value == 'particular'){
         // particular.classList.add('active')
         monotributista.classList.remove('active');
+        sueldoBruto.classList.remove('active')
     }
     if(value == 'sueldo'){
         console.log(sueldoBruto)
-        sueldoBruto.classList.add('active')
+        sueldoBruto.classList.add('active');
+        monotributista.classList.remove('active');
     }
     else if(value =='monotributo'){
         monotributista.classList.add('active');
-        particular.classList.remove('active')
+        // particular.classList.remove('active')
+        sueldoBruto.classList.remove('active')
     }else{
-        particular.classList.remove('active');
+        // particular.classList.remove('active');
         monotributista.classList.remove('active')
+        sueldoBruto.classList.remove('active')
     }
     
 })

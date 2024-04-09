@@ -15,7 +15,7 @@ const config = {
     host: 'viaduct.proxy.rlwy.net',
     user: 'root',
     password: 'rEOQuIUHxHlTctuFKDdSYRbRyTDATTln',
-    database: 'railway', 
+    database: 'planb', 
     port:55697,
 }
 const pool = mysql.createPool(config);

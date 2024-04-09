@@ -12,10 +12,10 @@ const mysql = require('mysql2/promise');
 //     port: process.env.PORTDB
 // }
 const config = {
-    host: viaduct.proxy.rlwy.net,
-    user: root,
-    password: rEOQuIUHxHlTctuFKDdSYRbRyTDATTln,
-    database: railway, 
+    host: 'viaduct.proxy.rlwy.net',
+    user: 'root',
+    password: 'rEOQuIUHxHlTctuFKDdSYRbRyTDATTln',
+    database: 'railway', 
     port:55697,
 }
 const pool = mysql.createPool(config);

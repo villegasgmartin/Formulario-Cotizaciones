@@ -60,7 +60,7 @@ const localidad = document.querySelector('#select-localidad');
 const nuevaLocalidad = document.querySelector('.localidad');
 // const cobertura = document.querySelector('#cobertura-particular');
 const nuevaCobertura = document.querySelector('.obra-social');
-const sueldoBruto = document.querySelector('.sueldo-bruto');
+
 
 
 localidad.addEventListener('change', ()=>{
@@ -84,21 +84,26 @@ localidad.addEventListener('change', ()=>{
 // })
 
 
+
+
 //condicional tipo de situacion laboral
 
 const selectAfip = document.querySelector('#selectAfip');
 const monotributista = document.querySelector('.monotributista');
-const particular = document.querySelector('.particular');
+// const particular = document.querySelector('.particular');
+const sueldoBruto = document.querySelector('.sueldo-bruto');
 
 
 selectAfip.addEventListener('change', ()=>{
     let value = selectAfip.value;
+    console.log(value);
 
     if ( value == 'particular' || value == 'sueldo'){
-        particular.classList.add('active')
+        // particular.classList.add('active')
         monotributista.classList.remove('active');
     }
     if(value == 'sueldo'){
+        console.log(sueldoBruto)
         sueldoBruto.classList.add('active')
     }
     else if(value =='monotributo'){

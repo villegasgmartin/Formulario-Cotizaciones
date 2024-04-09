@@ -25,7 +25,7 @@ pool.getConnection((err, connection) => {
         console.error('Error al obtener la conexión de la base de datos:', err);
     } else {
         console.log('Base de datos conectada');
-        connection.release(); // Liberar la conexión después de usarla
+        connection.release(); // Liberar la conexión después de usarla!
     }
 });
   

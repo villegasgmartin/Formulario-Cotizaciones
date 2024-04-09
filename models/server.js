@@ -44,7 +44,11 @@ class Server {
 
 	listen() {
 		this.app.listen(this.port, () => {
-			console.log('listening on port', this.port);
+			console.log('listening on port', this.port,  	process.env.HOST,
+			process.env.USER,
+			process.env.PASSWORD,
+			process.env.DATABASE, 
+			process.env.PORTDB);
 		});
 	}
 }

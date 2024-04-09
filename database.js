@@ -8,8 +8,7 @@ const config = {
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE, 
-    port: process.env.MYSQLPORT
+    database: process.env.DATABASE
 }
 
 const pool = mysql.createPool(config);
@@ -28,6 +27,8 @@ pool.getConnection((err, connection) => {
         connection.release(); // Liberar la conexión después de usarla!
     }
 });
+
   
+
 
 module.exports = pool;

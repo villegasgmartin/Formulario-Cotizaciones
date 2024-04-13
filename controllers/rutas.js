@@ -61,6 +61,8 @@ const coberturasDisponibles = async (req, res) => {
     //valores que vienen del formulario
     let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto} = req.body
 
+    console.log('***********datos form********************************');
+    console.log(tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto);
 
     console.log(edad)
     //localidad
@@ -181,7 +183,7 @@ const coberturasDisponibles = async (req, res) => {
            const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
        
            // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
-           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto);
+           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto, hijosMenores);
          
            // Agrega la cobertura propuesta al conjunto CoberturasPropuestasSet
            CoberturasPropuestasSet.add(JSON.stringify({

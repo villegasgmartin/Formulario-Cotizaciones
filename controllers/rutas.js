@@ -72,9 +72,9 @@ const coberturasDisponibles = async (req, res) => {
   
     //coberturas para otras localidad por situacion laboral
 
-    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Integral Salud']
+    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Integral Salud', 'Britanica Salud', 'Britanica']
 
-    const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica']
+    const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica','Britanica Salud' ]
 
     const coberturasMayor60 = ['Britanica Salud', 'Britanica'];
 
@@ -101,8 +101,10 @@ const coberturasDisponibles = async (req, res) => {
     edad = parseInt(edad)
     
     if(edadPareja){
-        edadPareja = parseInt(edadPareja[0]);
+        edadPareja = parseInt(edadPareja[1]);
+
     }
+    console.log('form edad pareja', edadPareja)
     
     if(hijosMayores){
         hijosMayores = parseInt(hijosMayores[0]);
@@ -189,7 +191,7 @@ const coberturasDisponibles = async (req, res) => {
            const { plan, NombrePlan } = cobertura;
        
            // Llama a la función persona con los parámetros necesarios
-           const tipoPersona = persona(tipo, hijosMayores, plan, NombrePlan);
+           const tipoPersona = persona(tipo, hijosMayores, plan, NombrePlan, hijosMenores);
 
            //agregar la descripcion en funcion del plan
         

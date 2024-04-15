@@ -93,7 +93,7 @@ const descripciones = {
     
     },
     AlianzaMedica:{
-        PLAN100:{
+        100:{
             descripcion:`<ul class="descripcion">
             <li>Con coseguros solamente en consultas</li>
             <li>Internacion en hab. compartida</li>
@@ -107,7 +107,7 @@ const descripciones = {
     OMINT:{
         1500:{
             descripcion:`<ul class="descripcion">
-            <li>Sin coseguros/li>
+            <li>Sin coseguros</li>
             <li>Cobertura Regional</li>
             <li>Internación en hab. compartida</li>
             <li>Prestadores seleccionados</li>
@@ -117,7 +117,7 @@ const descripciones = {
         },
         2500:{
             descripcion:`<ul class="descripcion">
-            <li>Sin coseguros/li>
+            <li>Sin coseguros</li>
             <li>Cobertura nacional y en países limítrofes</li>
             <li>Internación en hab. compartida</li>
             <li>Más prestadores en cartilla</li>

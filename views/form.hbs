@@ -8,9 +8,32 @@
 </head>
 <body>
 
-    
-
-    <form action="coberturas" method="POST">
+   <nav>
+        <div class="logo">
+            <img src="https://tuplanb.com.ar/wp-content/uploads/2024/03/5-1.png" alt="Logo">
+        </div>
+        <div class="links">
+            <a href="https://tuplanb.com.ar/#cotizadorancla">¿Cómo funciona?</a>
+            <a href="https://tuplanb.com.ar/#preguntasancla">Preguntas Frecuentes</a>
+            <a href="https://tuplanb.com.ar/#nosotrosancla">Sobre Nosotros</a>
+        </div>
+        <div class="mobile-menu">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <img src="https://res.cloudinary.com/dj3akdhb9/image/upload/v1713151490/icons8-menu-50_ivysse.png" alt="Menu">
+            </div>
+            <div class="menu" id="menu">
+                <span class="close-icon" onclick="toggleMenu()">X</span>
+              <a href="https://tuplanb.com.ar/#cotizadorancla">¿Cómo funciona?</a>
+            <a href="https://tuplanb.com.ar/#preguntasancla">Preguntas Frecuentes</a>
+            <a href="https://tuplanb.com.ar/#nosotrosancla">Sobre Nosotros</a>
+            </div>
+        </div>
+    </nav>
+   <h1 class="title">¡Compará y elegí el  <span style="color:#FE705A;">plan perfecto!</span> </h1>
+   
+<section class="form-container">
+  
+ <form action="coberturas" method="POST">
         <div class="select-cantidad">
             <label for="">Necesito una cobertura para...</label>
             <div class="custom-select" id="select-cantidad">
@@ -135,18 +158,27 @@
         <input type="submit" value="Buscar y Comparar Planes">
 
     </form>
+</section>
+   
     <div id="planesDiv">
             {{#each CoberturasPropuestas}}
         <div class="cobertura">
             <h2 class="nombre-comp">{{plan}}</h2>
             <p class="plan">{{NombrePlan}}</p>
             <p>{{{descripcion}}}</p>
-            <p class="costo"> {{valor}}</p>
+            <p class="costo">${{valor}}</p>
             <button class="mas-info-btn">Más Info</button>
         </div>
          {{/each}}
     </div>
 
+        <div class="footer-container">
+			<div>
+			<div>
+				Web desarrollada por <a style="color: #CCCCCC;" href="https://duwohdevelopers.com" target="_blank">Duwoh Developers</a> | Copyright @2024						
+            </div>
+			</div>
+		</div>
     
 
     <script src="index.js"></script>

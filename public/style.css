@@ -1,10 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 
 *{
     border:0;
     box-sizing: border-box;
+    margin: 0;
+   
   
 }
+h2, p, label{
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
+.title{
+    color: #244274;
+    font-family: "Ubuntu", Sans-serif;
+    font-size: 36px;
+    text-align: center;
+    padding-top: 40px;
+}
 /********************* condicionales ****************/
 /*esconder contenedores selector de cantidad de gente*/
 
@@ -169,15 +185,29 @@ div.cobertura{
    
     border-radius: 20px;
     padding: 25px 30px;
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
     box-shadow: 2px 2px rgba(0,0,0,0.2);
     margin-bottom: 20px;
 }
 
+/*colores coberturas*/
+/*'Avalian' == #00986B, 
+'Prevencion Salud' == #E10173, 
+'Alianza Medica' == #007EA7, 
+'Omint' == #002583, 
+'Integral Salud' ==#25907E, 
+Britanica Salud o Britanica* ==#E4002B */
+
+
+
+
 .nombre-comp{
     text-transform: uppercase;
-    
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
+
 .plan{
     font-size: 18px;
     text-transform: uppercase;
@@ -198,9 +228,19 @@ div{
     display: flex;
     flex-wrap: wrap;
     column-gap: 20px;
-    justify-content: space-around;
+    justify-content: center;
     max-width: 1200px;
-    padding-top: 40px;
+    padding:40px 20px 60px 20px;
+    margin:auto;
+
+}
+/*contenedor form*/
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 36px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -210,4 +250,145 @@ div{
     #select-cantidad .divoption{
         width: 140px;
     }
+    .form-container{
+       
+        padding:40px 15px 0 15px ;
+    }
+}
+
+
+/*menu nav */
+nav {
+    background-color: #F9F5F2;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-color: #F9F5F2;
+    border-color: #F9F5F2;
+    border-radius: 0px 0px 40px 40px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.logo img {
+    max-height: 60px;
+}
+
+.links a {
+    color: #000;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.line {
+    fill: #33373d;
+    height: 1em;
+    width: 1em;
+    margin-bottom:2px;
+    padding:0;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu.show a{
+    text-decoration: none;
+    color:#333333;
+    padding:28px 0;
+    font-size: 16px;
+}
+.menu.show a:hover{
+    background-color: #333333;
+    color:#fff;
+}
+.menu-icon img {
+    width: 30px; /* Ajusta según el tamaño de tu GIF */
+    height: 30px; /* Ajusta según el tamaño de tu GIF */
+}
+
+.close-icon {
+    cursor: pointer;
+    align-self: flex-end;
+    color:#333333;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .links {
+        display: none;
+    }
+    .mobile-menu {
+        display: flex;
+        align-items: center;
+    }
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: #F9F5F2;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    .menu.show {
+        display: flex;
+    }
+    .menu-icon img {
+        display: block;
+    }
+    .menu-icon.active img {
+        display: none;
+    }
+    .menu-icon.active .close-icon {
+        display: block;
+    }
+    .logo img {
+        max-height: 60px;
+    }
+    nav{
+        justify-content: space-evenly; 
+    }
+}
+
+
+/*footer*/
+.footer-container{
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #385B96;
+    position: fixed;
+    bottom: 0;
+}
+.footer-container div{
+    color:#fff;
+    font-size: 14px;
 }

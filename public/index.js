@@ -156,3 +156,59 @@ masInfoBtn.addEventListener('click', (event) => {
 
 
 
+//menu nav abrir y cerrar */
+function toggleMenu() {
+    var menu = document.getElementById("menu");
+    var menuIcon = document.querySelector(".menu-icon");
+    menu.classList.toggle("show");
+    menuIcon.classList.toggle("active");
+}
+
+//color titulo cobertura
+
+
+// 'Avalian' == #00986B, 
+//'Prevencion Salud' == #E10173, 
+//'Alianza Medica' == #007EA7, 
+//'Omint' == #002583, 
+//'Integral Salud' ==#25907E, 
+//Britanica Salud o Britanica* ==#E4002B 
+
+const resultados = document.querySelectorAll('.cobertura');
+console.log(resultados)
+
+resultados.forEach(valor => {
+    const compañia = valor.children[0].textContent;
+    console.log(compañia)
+
+    // Condicionales para cambiar el color dependiendo del nombre de la compañía
+    switch (compañia) {
+        case 'Avalian':
+            valor.children[0].style.color = '#00986B';
+            break;
+        case 'Omint':
+            valor.children[0].style.color = '#002583';
+            break;
+        case 'Prevencion Salud':
+            valor.children[0].style.color = '#E10173';
+        break;
+        case 'Alianza Medica':
+            valor.children[0].style.color = '#007EA7';
+        break;
+        case 'Integral Salud':
+            valor.children[0].style.color = '#25907E';
+        break;
+        case 'Omint':
+            valor.children[0].style.color = '#002583';
+        break;
+        case 'Britanica Salud':
+            valor.children[0].style.color = '#E4002B';
+        break;
+        case 'Britanica':
+            valor.children[0].style.color = '#E4002B';
+        break;
+        default:
+            // Por defecto, no se cambia el color
+            break;
+    }
+});

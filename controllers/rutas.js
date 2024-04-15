@@ -72,11 +72,15 @@ const coberturasDisponibles = async (req, res) => {
   
     //coberturas para otras localidad por situacion laboral
 
-    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Britanica Salud', 'Alianza Medica', 'Omint', 'Integral Salud']
+    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Integral Salud']
 
     const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica']
 
-    const OTRAS = ['Avalian', 'Prevencion Salud', 'Omint', 'Alianza Medica' ]
+    const coberturasMayor60 = ['Britanica Salud', 'Britanica'];
+
+  
+
+    const OTRAS = ['Prevencion Salud', 'Omint' ]
     //****Hijos ****/
     //validacio si es que hay hijos
 
@@ -115,9 +119,24 @@ const coberturasDisponibles = async (req, res) => {
 
 
     try {
+
+        if(edad >60){
+            
+            opcionLocalidad = coberturasMayor60
+            sqlQuery = `
+            SELECT plan, NombrePlan
+            FROM cotizaciones 
+            WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
+            AND ? > Rango_Edad_min
+            AND ? <= Rango_Edad
+            AND tributo <> 'Particular'`;
+        // Parámetros para la consulta SQL
+            params = [...opcionLocalidad, edad, edad];
+
+        }
        
         //primer condicionante localidad y sueldo
-        if (tributo != 'particular'){
+        if (tributo != 'particular' && edad < 60){
               
     
 
@@ -131,12 +150,12 @@ const coberturasDisponibles = async (req, res) => {
             AND ? <= Rango_Edad
             AND tributo <> 'Particular'`;
         // Parámetros para la consulta SQL
-        params = [...opcionLocalidad, edad, edad];
+            params = [...opcionLocalidad, edad, edad];
             console.log(params)
         }
 
         //segundo condicionante localidad y particular
-        if (tributo === 'particular'){
+        if (tributo === 'particular' && edad < 60){
 
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasParticular
 

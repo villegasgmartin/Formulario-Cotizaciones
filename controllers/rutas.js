@@ -120,7 +120,7 @@ const coberturasDisponibles = async (req, res) => {
 
     try {
 
-        if(edad >60){
+        if(edad >=60){
             
             opcionLocalidad = coberturasMayor60
             sqlQuery = `

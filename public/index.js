@@ -145,7 +145,7 @@ masInfoBtn.addEventListener('click', (event) => {
             const mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compañia}, el plan ${plan}.`;
     
         // Construir la URL de WhatsApp con el mensaje personalizado
-            const telefono = '+5492235131130'; // Número de teléfono predeterminado
+            const telefono = '+5493413151350'; // Número de teléfono predeterminado
             const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
     
          // Abrir la URL de WhatsApp en una nueva ventana

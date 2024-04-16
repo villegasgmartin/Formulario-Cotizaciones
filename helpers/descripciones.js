@@ -14,7 +14,7 @@ const descripciones = {
         },
         Integral:{
             descripcion:`<ul class="descripcion">
-            <li>Con coseguros</li>
+            <li>Sin coseguros</li>
             <li>Cob. Nacional y en paises limitrofes</li>
             <li>Internacion en Hab. Compartida/Privada</li>
             <li>Mas prestadores en cartilla</li>

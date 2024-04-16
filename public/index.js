@@ -134,23 +134,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-//agregarle el link de ws a cada plan
-const masInfoBtn = document.querySelector('.mas-info-btn');
-masInfoBtn.addEventListener('click', (event) => {
+// Seleccionar todos los botones "mas-info-btn"
+const masInfoBtns = document.querySelectorAll('.mas-info-btn');
+
+// Iterar sobre cada botón y agregar un evento clic
+masInfoBtns.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
         // Obtener el nombre de la compañía y el nombre del plan
-            const compañia = event.target.parentNode.querySelector('.nombre-comp').textContent;
-             const plan = event.target.parentNode.querySelector('.plan').textContent;
-    
+        const compañia = event.target.parentNode.querySelector('.nombre-comp').textContent;
+        const plan = event.target.parentNode.querySelector('.plan').textContent;
+
         // Construir el mensaje personalizado
-            const mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compañia}, el plan ${plan}.`;
-    
+        const mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compañia}, el plan ${plan}.`;
+
         // Construir la URL de WhatsApp con el mensaje personalizado
-            const telefono = '+5493413151350'; // Número de teléfono predeterminado
-            const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
-    
-         // Abrir la URL de WhatsApp en una nueva ventana
-            window.open(urlWhatsapp, '_blank');
-        });
+        const telefono = '+5493413151350'; // Número de teléfono predeterminado
+        const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
+
+        // Abrir la URL de WhatsApp en una nueva ventana
+        window.open(urlWhatsapp, '_blank');
+    });
+});
+
 
 
 

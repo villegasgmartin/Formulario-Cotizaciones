@@ -43,7 +43,7 @@
                 <div class="divoption" data-value="familia">Mi familia y yo</div>
             </div>
               <input type="hidden" name="tipo" id="tipo" value="">
-            <span for="edad">Tengo</span><input type="number" name="edad"  min="17" max="100" id="edad"><span>años</span>
+            <span for="edad">Tengo</span><input type="number" name="edad"  min="17" max="100" id="edad" required><span>años</span>
 
         </div>
         <div class="condicional">
@@ -80,7 +80,7 @@
 
         </div>
         <div>
-            <span>Vivo en </span><select name="localidad" id="select-localidad">
+            <span>Vivo en </span><select name="localidad" id="select-localidad" required>
                 <option  id="placeholder" value="0" disabled selected>Selecciona una opción</option>
                 <option value="ROSARIO">-</option>
                 <option value="ROSARIO">Rosario</option>
@@ -104,7 +104,7 @@
         
         <div>
             <span>Trabajo como</span>
-            <select name="tributo" id="selectAfip">
+            <select name="tributo" id="selectAfip" required>
                 <option id="placeholder" value="0" disabled selected>Selecciona una opción</option>
                 <option value="-">-</option>
                 <option value="particular">Particular</option>

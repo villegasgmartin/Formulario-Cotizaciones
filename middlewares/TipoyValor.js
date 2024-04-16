@@ -380,7 +380,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
                 }else{
                     price0 = 0
                 }
-            }
+            }else{
+                    price0 = 0
+                }
         const edadCotizada = encontrarNumeroMasGrande(edad, edadPareja)
        
     

@@ -14,7 +14,7 @@ const descripciones = {
         },
         Integral:{
             descripcion:`<ul class="descripcion">
-            <li>Sin coseguros</li>
+            <li>Con coseguros</li>
             <li>Cob. Nacional y en paises limitrofes</li>
             <li>Internacion en Hab. Compartida/Privada</li>
             <li>Mas prestadores en cartilla</li>
@@ -82,7 +82,7 @@ const descripciones = {
         },
         BS180:{
             descripcion:`<ul class="descripcion">
-            <li>Con coseguros</li>
+            <li>Sin coseguros</li>
             <li>Internacion en hab. compartida</li>
             <li>Cobertura regional con asistencia al viajero nacional e internacional</li>
             <li>Mas prestadores en cartilla</li>

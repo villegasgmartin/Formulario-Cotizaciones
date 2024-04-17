@@ -391,12 +391,12 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
                 params = [plan, NombrePlan,edadCotizada, edadCotizada, tipo,tributo]
                 const valorIncial1 = await pool.query(queryGeneral, params)
                 pricePareja = parseFloat(valorIncial1[0][0].Cotizacion);
-                    
+                  console.log("precio pareja", pricePareja);  
                 paramsIndividuo = [plan, NombrePlan,edadCotizada, edadCotizada, 'Individuo',tributo]
                 const valorIncial2 = await pool.query(queryGeneral, paramsIndividuo);
                 priceIndividuo = parseFloat(valorIncial2[0][0].Cotizacion);
-                    
-                price1 =pricePareja + priceIndividuo;
+                    console.log('precio persona', priceIndividuo)
+                price1 = pricePareja + priceIndividuo;
             }else{
                 price1 =0
             }

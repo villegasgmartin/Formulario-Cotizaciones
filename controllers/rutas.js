@@ -100,9 +100,11 @@ const coberturasDisponibles = async (req, res) => {
     
     edad = parseInt(edad)
     
-    if(edadPareja){
-        edadPareja = parseInt(edadPareja[1]);
+    if(edadPareja && tipo == 'pareja'){
+        edadPareja = parseInt(edadPareja[0]);
 
+    }else{
+        edadPareja = parseInt(edadPareja[1]);   
     }
     console.log('form edad pareja', edadPareja)
     

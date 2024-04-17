@@ -404,7 +404,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         
         
                 const valorIncial2 = await pool.query(queryGeneral, params)
-                    console.log("valor inicial britanica", valorInicial2)
+                    console.log("valor inicial britanica", valorIncial2)
                 price2 = parseFloat(valorIncial2[0][0].Cotizacion);
                     
             }else{

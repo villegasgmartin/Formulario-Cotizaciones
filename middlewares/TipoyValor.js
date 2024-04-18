@@ -540,11 +540,13 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             params = [plan, NombrePlan,edadPareja, edadPareja, tipo,tributo]
             const valorIncialPareja = await pool.query(queryGeneral, params)
             price2 = parseFloat(valorIncialPareja[0][0].Cotizacion); 
+        }else{
+                price2=0
         }
         if(hijosMayores>0){
 
             
-            params = [plan, NombrePlan,25, 25, 'HijoMayor',tributo]
+            params = [plan, NombrePlan,21, 21, 'HijoMayor',tributo]
             const valorIncialHijos = await pool.query(queryGeneral, params)
             price3 = parseFloat(valorIncialHijos[0][0].Cotizacion)*hijosMayores;
         }else{
@@ -553,7 +555,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         if(hijosMenores>0){
 
             
-            params = [plan, NombrePlan,20, 20, 'HijoMenor',tributo]
+            params = [plan, NombrePlan,17, 17, 'HijoMenor',tributo]
             const valorIncialHijos = await pool.query(queryGeneral, params)
             price4 = parseFloat(valorIncialHijos[0][0].Cotizacion)*hijosMenores;
         }else{

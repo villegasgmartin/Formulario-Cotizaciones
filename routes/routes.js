@@ -7,4 +7,8 @@ router.get('/', getHome)
 
 router.post('/coberturas', coberturasDisponibles); 
 
+router.get('*', (req, res) => {
+   res.redirect('/');
+});
+
 module.exports = router;

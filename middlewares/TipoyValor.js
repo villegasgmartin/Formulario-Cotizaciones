@@ -383,7 +383,13 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             }else{
                     price0 = 0
                 }
-        const edadCotizada = encontrarNumeroMasGrande(edad, edadPareja)
+
+            if(edadPareja){
+                    edadCotizada = encontrarNumeroMasGrande(edad, edadPareja)
+
+            }else{
+                   edadCotizada = edad;
+            }
        
     
             if((NombrePlan !== 'Pulso' && NombrePlan !== 'BS A Mayor') && edadPareja>0){

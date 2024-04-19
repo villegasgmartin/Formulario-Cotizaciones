@@ -91,7 +91,15 @@ const coberturasDisponibles = async (req, res) => {
         hijosMenores = 0;
     }
 
+  // Calcula la suma de hijos mayores y menores
+    const totalHijos = parseInt(hijosMayores[0]) + parseInt(hijosMenores[0]);
 
+    // Verifica si la suma es mayor a 5
+    if (totalHijos > 5) {
+        // Si la suma es mayor a 5, renderiza solo el botón de consulta
+        return res.render('form', { mostrarBoton: true });
+    }
+        
     //tipo de individuo
 
     if(tipo =='mi'){

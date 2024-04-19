@@ -161,15 +161,23 @@
 </section>
    
     <div id="planesDiv">
-            {{#each CoberturasPropuestas}}
-        <div class="cobertura">
-            <h2 class="nombre-comp">{{plan}}</h2>
-            <p class="plan">{{NombrePlan}}</p>
-            <p>{{{descripcion}}}</p>
-            <p class="costo">${{valor}}</p>
-            <button class="mas-info-btn" onclick="window.location.href = `https://wa.me/+5493413151350?text=Buenas%20tardes,%20quisiera%20averiguar%20sobre%20la%20cobertura%20${plan},%20el%20plan%20${NombrePlan}.`" >Más Info</button>
-        </div>
-         {{/each}}
+            {{#if mostrarBoton}}
+    <div class="consulta-container">
+        <button class="mas-info-btn" onclick="window.location.href = `https://wa.me/+5493413151350?text=Buenas%20tardes,%20quisiera%20averiguar%20sobre%20la%20cobertura`">Consultar</button>
+    </div>
+{{else}}
+    <div id="planesDiv">
+        {{#each CoberturasPropuestas}}
+            <div class="cobertura">
+                <h2 class="nombre-comp">{{plan}}</h2>
+                <p class="plan">{{NombrePlan}}</p>
+                <p>{{{descripcion}}}</p>
+                <p class="costo">${{valor}}</p>
+                <button class="mas-info-btn" onclick="window.location.href = `https://wa.me/+5493413151350?text=Buenas%20tardes,%20quisiera%20averiguar%20sobre%20la%20cobertura%20${plan},%20el%20plan%20${NombrePlan}.`" >Más Info</button>
+            </div>
+        {{/each}}
+    </div>
+{{/if}}
     </div>
 
         <div class="footer-container">

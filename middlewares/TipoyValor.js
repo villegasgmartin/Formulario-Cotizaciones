@@ -18,6 +18,9 @@ const pool = require('../database');
 const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
 
         const hijosTotales = hijosMayores + hijosMenores
+        if(hijosTotales>5){
+                hijosTotales = 5;
+        }
         console.log('persona', tipo, hijosTotales, plan);
         if(NombrePlan =='Pulso' || NombrePlan=='BS A Mayor' && tipo =='pareja'  || tipo =='familia' && hijosTotales==0 ){
             tipo = 'Individuo';

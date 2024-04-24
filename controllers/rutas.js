@@ -72,7 +72,7 @@ const coberturasDisponibles = async (req, res) => {
   
     //coberturas para otras localidad por situacion laboral
 
-    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Integral Salud', 'Britanica Salud', 'Britanica']
+    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Britanica Salud', 'Britanica']
 
     const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica','Britanica Salud' ]
 

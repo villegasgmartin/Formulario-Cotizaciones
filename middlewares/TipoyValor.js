@@ -415,8 +415,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             if( (NombrePlan !== 'Pulso' && NombrePlan !== 'BS A Mayor') && hijosTotalesBritanica>=1){
     
                 
-                params = [plan, NombrePlan,edadCotizada, edadCotizada, '1Hijo',tributo]
-        console.log(plan, NombrePlan, edadCotizada, edadCotizada, tributo)
+                params = [plan, NombrePlan,21, 21, '1Hijo',tributo]
+        console.log(plan, NombrePlan, 21, 21, tributo)
         
                 const valorIncial2 = await pool.query(queryGeneral, params)
                     console.log("valor inicial britanica", valorIncial2)

@@ -144,10 +144,32 @@ masInfoBtns.forEach((btn) => {
         // Obtener el nombre de la compañía y el nombre del plan
         const compania = event.target.parentNode.querySelector('.nombre-comp').textContent;
         const plan = event.target.parentNode.querySelector('.plan').textContent;
+        const edad = event.target.parentNode.querySelector('.edad').textContent;
+        const edadPareja = event.target.parentNode.querySelector('.edad-pareja')?.textContent ?? '';
+        const monotributo = event.target.parentNode.querySelector('.monotributo')?.textContent ?? 'No monotributo';
+        const sueldo = event.target.parentNode.querySelector('.sueldo')?.textContent ?? '';
+        const tipo = event.target.parentNode.querySelector('.tipo')?.textContent ?? '';
+        const tributo = event.target.parentNode.querySelector('.tributo')?.textContent ?? '';
+        const localidad = event.target.parentNode.querySelector('.localidad')?.textContent ?? '';
+
+        console.log(tipo, "tributo:", tributo)
+
+        if(tipo == 'Individuo'  && tributo != "Sueldo" ){
+            // Construir el mensaje personalizado
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: Particular, Localidad: ${localidad.toLowerCase()}`;
+        }
+        if(tipo == 'Individuo' && tributo =="Sueldo"  ){
+            // Construir el mensaje personalizado
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}`;
+        }
+        if(tipo != 'Individuo' && tributo !="Sueldo" ){
+            // Construir el mensaje personalizado
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Edad Pareja: ${edadPareja}, Tipo: Particular, Localidad: ${localidad.toLowerCase()}`;
+        }
+        
         console.log(compania, plan)
 
-        // Construir el mensaje personalizado
-        const mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}.`;
+       
 
         // Construir la URL de WhatsApp con el mensaje personalizado
         const telefono = '+5493413151350'; // Número de teléfono predeterminado

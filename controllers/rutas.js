@@ -222,7 +222,13 @@ const coberturasDisponibles = async (req, res) => {
                NombrePlan: NombrePlan,
                descripcion:descripcion,
                valor: valorCobertura,
-
+               edad: edad,
+               tipo: tipo,
+               tributo: tributo,
+               sueldo: sueldoBruto,
+               monutributo: monutributo, 
+               localidad: localidad, 
+               edadPareja: edadPareja,
            }));
        }
        

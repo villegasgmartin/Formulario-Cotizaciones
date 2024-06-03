@@ -21,7 +21,7 @@ const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
         if(hijosTotales>5){
                 hijosTotales = 5;
         }
-        console.log('persona', tipo, hijosTotales, plan);
+  
         if(NombrePlan =='Pulso' || NombrePlan=='BS A Mayor' && tipo =='pareja'  || tipo =='familia' && hijosTotales==0 ){
             tipo = 'Individuo';
             return tipo
@@ -122,7 +122,6 @@ return tipo;
 //CATEGORIA H		APORTES: *$6300 X PERSONA
 
 function aportesMonotributista (monutributo){
-    console.log(monutributo);
     switch (monutributo) {
         case 'Categorias A,B,C':
             descuento = 3500
@@ -153,7 +152,7 @@ function aportesMonotributista (monutributo){
 
 }
 function aportesSueldoBruto (SueldoBruto, plan){
-    console.log(SueldoBruto, plan);
+    
     switch (plan) {
         case 'Integral Salud':
             descuentoSueldo = SueldoBruto * 0.0709
@@ -180,7 +179,8 @@ function aportesSueldoBruto (SueldoBruto, plan){
             break;
 
     }
-    console.log(descuentoSueldo)
+    
+
     return descuentoSueldo
 
 }
@@ -263,7 +263,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             descuentoSueldo = 0
         }
 
-        return Math.round(price - descuento - descuentoSueldo)
+        // return Math.round(price - descuento - descuentoSueldo)
+        return 'Consultar Valor'
     }
     //plan=='Prevencion Salud'*********************
     if(plan=='Prevencion Salud'){
@@ -287,16 +288,17 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }
 
         let costo = price - descuento - descuentoSueldo
-        return Math.round(costo * 0.5)
+        // return Math.round(costo * 0.5)
+        return 'Consultar Valor'
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
     
         params1 = [plan, NombrePlan,edad, edad, tipo,tributo]
-        console.log(params1);
+     
 
         const valorIncial1 = await pool.query(queryGeneral, params1)
-        console.log('omint',valorIncial1 )
+       
         price1 = parseFloat(valorIncial1[0][0].Cotizacion);
         
 
@@ -337,8 +339,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
       
         
         let price = price1 + price2 + price3*hijosMayores + price4*hijosMenores  
-        console.log("/*******precios omint******");
-        console.log(price1, price2, price3)
+        
 
 
         
@@ -354,8 +355,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             descuentoSueldo = 0
         }
         let costo = price - descuento- descuentoSueldo
-        console.log('omnit', price, descuento, descuentoSueldo)
-        return Math.round(costo * 0.85)
+     
+        // return Math.round(costo * 0.85)
+        return 'Consultar Valor'
     }
     //plan=='Britanica Salud'*********************
     if(plan == 'Britanica Salud' || plan == 'Britanica'){
@@ -364,7 +366,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
         if(tipo == 'Individuo'){
             params = [plan, NombrePlan,edad, edad, tipo,tributo]
-            console.log(params)
+            
             const valorIncial4 = await pool.query(queryGeneral, params)
             price4 = parseFloat(valorIncial4[0][0].Cotizacion) || 0;
         }else{
@@ -400,11 +402,11 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
                 params = [plan, NombrePlan,edadCotizada, edadCotizada, tipo,tributo]
                 const valorIncial1 = await pool.query(queryGeneral, params)
                 pricePareja = parseFloat(valorIncial1[0][0].Cotizacion);
-                  console.log("precio pareja", pricePareja);  
+               
                 paramsIndividuo = [plan, NombrePlan,edadCotizada, edadCotizada, 'Individuo',tributo]
                 const valorIncial2 = await pool.query(queryGeneral, paramsIndividuo);
                 priceIndividuo = parseFloat(valorIncial2[0][0].Cotizacion);
-                    console.log('precio persona', priceIndividuo)
+                
                 price1 = pricePareja + priceIndividuo;
             }else{
                 price1 =0
@@ -416,10 +418,10 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     
                 
                 params = [plan, NombrePlan,21, 21, '1Hijo',tributo]
-        console.log(plan, NombrePlan, 21, 21, tributo)
+       
         
                 const valorIncial2 = await pool.query(queryGeneral, params)
-                    console.log("valor inicial britanica", valorIncial2)
+                
                 price2 = parseFloat(valorIncial2[0][0].Cotizacion);
                     
             }else{
@@ -459,12 +461,11 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
         
         let price = price0 + price1 + price2 + price3 + price4 - descuento - descuentoSueldo;
-        console.log(price0 , price1 , price2 , price3 , price4 , descuento, descuentoSueldo, bonificacion);
-        return Math.round(price * bonificacion);
+        return "$" + Math.round(price * bonificacion);
     }
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
-        console.log("edad pareja", edadPareja);
+       
         const hijosTotalesAvalian = hijosMayores + hijosMenores
 
         params = [plan, NombrePlan,edad, edad, tipo,tributo]
@@ -532,8 +533,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             descuentoSueldo = 0
         }
         let price = price1 + price2 + price3 + price4 + price5 - descuento -descuentoSueldo;
-        console.log( NombrePlan, price1, price2, price3, price4, price5, descuento, descuentoSueldo);
-        return Math.round(price  * 0.55);
+        // return Math.round(price  * 0.55);
+        return 'Consultar Valor'
     }
 
     if(plan=='Alianza Medica'){
@@ -582,7 +583,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }else{
             descuentoSueldo = 0
         }
-        return price = Math.round(price1 + price2 + price3 + price4 - descuento - descuentoSueldo);
+        return price ="$" + Math.round(price1 + price2 + price3 + price4 - descuento - descuentoSueldo);
     }
 
     } catch (error) {

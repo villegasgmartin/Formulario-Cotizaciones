@@ -459,9 +459,10 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
         bonificacion = descuentosBritanica(NombrePlan, edad);
 
+        //sacamos bonificacion 3/6/24
         
         let price = price0 + price1 + price2 + price3 + price4 - descuento - descuentoSueldo;
-        return "$" + Math.round(price * bonificacion);
+        return "$" + Math.round(price);
     }
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
@@ -583,6 +584,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }else{
             descuentoSueldo = 0
         }
+
+         //sacamos bonificacion 3/6/24
         return price ="$" + Math.round(price1 + price2 + price3 + price4 - descuento - descuentoSueldo);
     }
 

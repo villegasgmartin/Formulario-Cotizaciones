@@ -251,6 +251,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     
     if(plan=='Integral Salud'){
 
+        return 'Consultar Valor'
+
         if (tributo ==='monotributo' || tributo === 'sueldo'){
                 tributo = 'Sueldo'
         }
@@ -277,6 +279,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     }
     //plan=='Prevencion Salud'*********************
     if(plan=='Prevencion Salud'){
+
+        return 'Consultar Valor'
      
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'
@@ -307,6 +311,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
+
+        return 'Consultar Valor'
     
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'
@@ -487,6 +493,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     }
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
+
+        return 'Consultar Valor'
        
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'

@@ -137,7 +137,31 @@ const descripciones = {
             </ul>`,
             
         }
-    }
+    },
+    Plenit:{
+        ConCoseguro:{
+            descripcion:`<ul class="descripcion">
+            <li>Cobertura directa solo con credencial</li>
+            <li>Con copagos</li>
+            <li>Internacion cubierta al 100% </li>
+            <li>Cobertura completa (Estudios, analisis, practicas, etc)</li>
+            <li>Medico a domicilio, urgencias y emergencias</li>
+            <li>Toda la red propia del sanatorio de la mujer</li>
+            </ul>`,
+            
+        },
+        SinCoseguro:{
+            descripcion:`<ul class="descripcion">
+            <li>Cobertura directa solo con credencial</li>
+            <li>Sin copagos</li>
+            <li>Internacion cubierta al 100% </li>
+            <li>Cobertura completa (Estudios, analisis, practicas, etc)</li>
+            <li>Medico a domicilio, urgencias y emergencias</li>
+            <li>Toda la red propia del sanatorio de la mujer</li>
+            </ul>`,
+          
+        }
+    },
 }
 
 const obtenerDescripcion = (plan, NombrePlan)=>{

@@ -175,6 +175,9 @@ function aportesSueldoBruto (SueldoBruto, plan){
         case 'Avalian':
             descuentoSueldo = SueldoBruto * 0.065
                 break;
+        case 'PLenit':
+            descuentoSueldo = SueldoBruto * 0.0685
+            break;
         default:
             break;
 
@@ -537,6 +540,100 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         // return Math.round(price  * 0.55);
         return 'Consultar Valor'
     }
+
+
+    if(plan=='Plenit'){
+       
+        const hijosTotalesPlenit = hijosMayores + hijosMenores
+
+        if(edadPareja==0 && hijosTotalesPlenit==0 ){
+            params = [plan, NombrePlan,edad, edad, tipo,tributo]
+            const valorIncial = await pool.query(queryGeneral, params)
+            console.log('valor', params, valorIncial);
+            price1 = parseFloat(valorIncial[0][0].Cotizacion); 
+        }else{
+            price1 = 0;
+        }
+      
+        
+
+        if(edadPareja>0 && hijosTotalesPlenit==0 ){
+
+            params = [plan, NombrePlan,edad, edad,'Matrimonio',tributo]
+            const valorIncialPareja = await pool.query(queryGeneral, params)
+            price2 = parseFloat(valorIncialPareja[0][0].Cotizacion); 
+          
+        }else{
+            price2= 0;
+        }
+
+
+        if(hijosTotalesPlenit>0){
+
+            if(edadPareja>0){
+                params = [plan, NombrePlan,edad, edad, 'Matrimonio1Hijo',tributo]
+                const valorIncial1HIjo = await pool.query(queryGeneral, params)
+                price3 = parseFloat(valorIncial1HIjo[0][0].Cotizacion); 
+            }else{
+                params = [plan, NombrePlan,edad, edad, 'Individual1Hijo',tributo]
+                const valorIncial1HIjo = await pool.query(queryGeneral, params)
+                price3 = parseFloat(valorIncial1HIjo[0][0].Cotizacion); 
+            }
+
+            
+           
+       
+            if(hijosTotalesPlenit>=2){
+
+                params = [plan, NombrePlan,edad, edad, '2Hijo',tributo]
+                const valorIncial2Hijo = await pool.query(queryGeneral, params)
+                price4 = parseFloat(valorIncial2Hijo[0][0].Cotizacion);
+               
+
+            }else{
+                price4 = 0
+            }
+          
+        
+            if(hijosTotalesPlenit>=3){
+
+                params = [plan, NombrePlan,edad, edad, 'Hijos',tributo]
+                const valorIncialHijos = await pool.query(queryGeneral, params)
+                price5 = valorIncialHijos[0][0].Cotizacion*(hijosTotalesPlenit - 2);
+              
+            }else{
+                price5 = 0
+            }
+   
+     
+        } else{
+            price3 = 0;
+            price4 = 0;
+            price5 = 0;
+        }
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+
+        
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+        let price = price1 + price2 + price3 + price4 + price5 - descuento -descuentoSueldo;
+        console.log(price1, price2, price3, price4, price5, descuento, descuentoSueldo);
+        return "$" + Math.round(price);
+
+        
+    }
+
+
+
+
+
 
     if(plan=='Alianza Medica'){
 

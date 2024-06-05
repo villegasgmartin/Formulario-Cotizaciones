@@ -168,7 +168,9 @@
     <div id="planesDiv">
         {{#each CoberturasPropuestas}}
             <div class="cobertura">
-                    <h2 class="nombre-comp">{{plan}}</h2>
+                <h2 class="nombre-comp">{{plan}}</h2>
+                <div>
+                    
                     <p class="plan">{{NombrePlan}}</p>
                     {{!-- datos ocultos --}}
                     <p style="display: none;" class="edad">{{edad}}</p>
@@ -182,6 +184,9 @@
 
                     <p>{{{descripcion}}}</p>
                     <p class="costo">{{valor}}</p>
+
+                </div>
+                    
                     <button class="mas-info-btn" onclick="window.location.href= {{ws}}">Más Info</button>    
             </div>
         {{/each}}

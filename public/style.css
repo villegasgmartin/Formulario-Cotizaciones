@@ -170,7 +170,7 @@ input[type="submit"], .mas-info-btn{
     width: 100%;
     padding: 12px 24px;
     border-radius: 50px;
-    margin: auto;
+    margin-top: auto;
     cursor: pointer;
 }
 input[type="submit"]:hover, .mas-info-btn:hover{
@@ -188,6 +188,9 @@ div.cobertura{
     background-color: #f2f2f2;
     box-shadow: 2px 2px rgba(0,0,0,0.2);
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 /*colores coberturas*/

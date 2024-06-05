@@ -234,6 +234,8 @@ function encontrarNumeroMasGrande(num1, num2) {
 
 const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores)=>{
 
+
+
     queryGeneral = `SELECT Cotizacion FROM cotizaciones 
     WHERE plan = ?
     AND NombrePlan = ?
@@ -248,6 +250,10 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
          //plan=='Integral Salud'**********************
     
     if(plan=='Integral Salud'){
+
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+                tributo = 'Sueldo'
+        }
  
         params = [plan, NombrePlan,edad, edad, tipo,tributo]
         
@@ -272,6 +278,11 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     //plan=='Prevencion Salud'*********************
     if(plan=='Prevencion Salud'){
      
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
+
+
         const maximo = Math.max(edad, edadPareja);
 
         params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
@@ -297,6 +308,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
     
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
         params1 = [plan, NombrePlan,edad, edad, tipo,tributo]
      
 
@@ -364,6 +378,10 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     }
     //plan=='Britanica Salud'*********************
     if(plan == 'Britanica Salud' || plan == 'Britanica'){
+
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
 
         const hijosTotalesBritanica = hijosMayores + hijosMenores
 
@@ -470,6 +488,11 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
        
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
+
+
         const hijosTotalesAvalian = hijosMayores + hijosMenores
 
         params = [plan, NombrePlan,edad, edad, tipo,tributo]
@@ -544,6 +567,11 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
     if(plan=='Plenit'){
        
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
+
+
         const hijosTotalesPlenit = hijosMayores + hijosMenores
 
         if(edadPareja==0 && hijosTotalesPlenit==0 ){
@@ -636,6 +664,14 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
 
     if(plan=='Alianza Medica'){
+
+
+        if (tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }else{
+            tributo = 'Particular'
+         }
+
 
         params = [plan, NombrePlan,edad, edad, tipo,tributo]
         

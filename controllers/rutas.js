@@ -124,9 +124,9 @@ const coberturasDisponibles = async (req, res) => {
     }
     //tributo
 
-    if (tributo ==='monotributo' || tributo === 'sueldo'){
-        tributo = 'Sueldo'
-    }
+    // if (tributo ==='monotributo' || tributo === 'sueldo'){
+    //     tributo = 'Sueldo'
+    // }
 
 
 

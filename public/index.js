@@ -132,6 +132,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+//validacion formulario
+
+const form = document.querySelector('.form-cotiza');
+
+
+form.addEventListener('submit', (e) => {
+    console.log('oubto1')
+    let selectLocalidad = document.getElementById('select-localidad');
+    console.log('oubto3', selectLocalidad.value)
+    if (selectLocalidad.value == "base" ) {
+        alert("Por favor seleccione Localidad válida.");
+        e.preventDefault(); // Evita que el formulario se envíe
+    }
+
+});
+
+
+
 
 
 // Seleccionar todos los botones "mas-info-btn"
@@ -151,24 +169,32 @@ masInfoBtns.forEach((btn) => {
         const tipo = event.target.parentNode.querySelector('.tipo')?.textContent ?? '';
         const tributo = event.target.parentNode.querySelector('.tributo')?.textContent ?? '';
         const localidad = event.target.parentNode.querySelector('.localidad')?.textContent ?? '';
+        const hijos = event.target.parentNode.querySelector('.hijos')?.textContent ?? '';
 
         console.log(tipo, "tributo:", tributo)
 
-        if(tipo == 'Individuo'  && tributo != "Sueldo" ){
+        if(tipo == 'Individuo'  && tributo != "sueldo" ){
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: Particular, Localidad: ${localidad.toLowerCase()}`;
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}`;
+
         }
-        if(tipo == 'Individuo' && tributo =="Sueldo"  ){
+        if(tipo == 'Individuo' && tributo =="sueldo"  ){
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}`;
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relacion de dependecia, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}`;
         }
-        if(tipo != 'Individuo' && tributo !="Sueldo" ){
+        if(tipo != 'Individuo' && tributo !="sueldo" ){
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Edad Pareja: ${edadPareja}, Tipo: Particular, Localidad: ${localidad.toLowerCase()}`;
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}`;
         }
         
         console.log(compania, plan)
 
+        if(hijos > 0){
+            mensajePersonalizado = `${mensajePersonalizado} total de hijos: ${hijos}`;
+        }
+        if(edadPareja > 0){
+            mensajePersonalizado = `${mensajePersonalizado} Edad pareja: ${edadPareja}`;
+        }
        
 
         // Construir la URL de WhatsApp con el mensaje personalizado

@@ -33,7 +33,7 @@
    
 <section class="form-container">
   
- <form action="coberturas" method="POST">
+ <form class="form-cotiza" action="coberturas" method="POST">
         <div class="select-cantidad">
             <label for="">Necesito una cobertura para...</label>
             <div class="custom-select" id="select-cantidad">
@@ -53,11 +53,11 @@
             <div class="hijos">
                 <div class="cantidad-hijos">
                     <label for="">Cantidad de hijos menores de 21 años</label>
-                    <input type="number" name="hijosMenores" id="" min="0" max="10">
+                    <input type="number" name="hijosMenores" id="hijosMenores" min="0" max="10">
                 </div>
                 <div class="cantidad-hijos">
                     <label for="">Cantidad de hijos mayores de 21 años</label>
-                    <input type="number" name="hijosMayores" id="" min="0" max="10">
+                    <input type="number" name="hijosMayores" id="hijosMayores" min="0" max="10">
                 </div>
             </div>
             <div class="familia">
@@ -81,8 +81,8 @@
         </div>
         <div>
             <span>Vivo en </span><select name="localidad" id="select-localidad" required>
-                <option  id="placeholder" value="0" disabled selected>Selecciona una opción</option>
-                <option value="ROSARIO">-</option>
+                <option  id="placeholder" value="base" disabled selected>Selecciona una opción</option>
+                
                 <option value="ROSARIO">Rosario</option>
                 <option value="FUNES">Funes</option>
                 <option value="ROLDAN">Roldan</option>
@@ -180,6 +180,8 @@
                     <p style="display: none;"  class="localidad">{{localidad}}</p>   
                     <p style="display: none;"  class="edad-pareja">{{edadPareja}}</p>
                     <p style="display: none;"  class="tributo">{{tributo}}</p>
+                    <p style="display: none;"  class="hijos">{{hijos}}</p>
+
 
 
                     <p>{{{descripcion}}}</p>

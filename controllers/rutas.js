@@ -229,6 +229,7 @@ const coberturasDisponibles = async (req, res) => {
                monutributo: monutributo, 
                localidad: localidad, 
                edadPareja: edadPareja,
+               hijos: hijosMayores + hijosMenores
            }));
        }
        

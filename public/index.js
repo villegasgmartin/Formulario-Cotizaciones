@@ -176,26 +176,24 @@ masInfoBtns.forEach((btn) => {
 
         if(tipo == 'Individuo'  && tributo != "sueldo" ){
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}`;
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
 
         }
         if(tipo == 'Individuo' && tributo =="sueldo"  ){
+                mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relacion de dependecia, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+
+           
+           
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relacion de dependecia, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}`;
         }
         if(tipo != 'Individuo' && tributo !="sueldo" ){
             // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}`;
+            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
         }
         
         console.log(compania, plan)
 
-        if(hijos > 0){
-            mensajePersonalizado = `${mensajePersonalizado} total de hijos: ${hijos}`;
-        }
-        if(edadPareja > 0){
-            mensajePersonalizado = `${mensajePersonalizado} Edad pareja: ${edadPareja}`;
-        }
+      
        
 
         // Construir la URL de WhatsApp con el mensaje personalizado

@@ -173,6 +173,8 @@ masInfoBtns.forEach((btn) => {
 
         console.log(tipo, "tributo:", tributo)
 
+        let mensajePersonalizado = '';
+
         if(tipo == 'Individuo'  && tributo != "sueldo" ){
             // Construir el mensaje personalizado
             mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}`;

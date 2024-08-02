@@ -503,6 +503,7 @@ console.log(tipo)
         //sacamos bonificacion 3/6/24
         
         let price = price0 + price1 + price2 + price3 + price4 - descuento - descuentoSueldo;
+        console.log(price0 , price1 , price2 , price3 , price4 , descuento , descuentoSueldo,plan, NombrePlan,edad, edad, tipo,tributo, edadPareja) ;
         return "$" + Math.round(price);
     }
     //plan=='Avalian'*********************

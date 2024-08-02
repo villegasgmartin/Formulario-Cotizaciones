@@ -172,8 +172,8 @@ const coberturasDisponibles = async (req, res) => {
 
     try {
 
-        if(edad >=50 && edad <=60){
-            
+        if ((edad >= 50 && edad <= 60) || (edadPareja && edadPareja >= 50 && edadPareja <= 60)){
+            console.log('1');
             opcionLocalidad = coberturasMayor60
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -186,8 +186,8 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
-        if(edad >60 && edad <= 65){
-            
+        if ((edad > 60 && edad < 65) || (edadPareja && edadPareja > 60 && edadPareja < 65)){
+            console.log('2');
             opcionLocalidad = coberturasMayor65
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -200,8 +200,8 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
-        if(edad >=65){
-            
+        if ((edad >= 65) || (edadPareja && edadPareja >= 65)){
+            console.log('3');
             opcionLocalidad = coberturasMayor90
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -216,8 +216,8 @@ const coberturasDisponibles = async (req, res) => {
         }
        
         //primer condicionante localidad y sueldo
-        if (tributo != 'particular' && edad < 60 && tributo != 'monotributo'){
-              
+        if ((tributo != 'particular' && edad < 50 && tributo != 'monotributo') && (!edadPareja || (edadPareja < 50))) {
+            console.log('4'); 
     
 
 
@@ -235,8 +235,8 @@ const coberturasDisponibles = async (req, res) => {
         }
 
         //segundo condicionante localidad y particular
-        if (tributo != 'sueldo' && edad < 60){
-
+        if ((tributo != 'sueldo' && edad < 50) & (!edadPareja || (edadPareja < 50))){
+            console.log('5');
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasParticular
 
             sqlQuery = `

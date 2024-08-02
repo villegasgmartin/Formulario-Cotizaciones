@@ -65,23 +65,10 @@ const coberturasDisponibles = async (req, res) => {
     console.log(tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto);
 
     console.log(edad)
-    //localidad
 
-    const localidades = ['ROSARIO', 'FUNES', 'ROLDAN', 'SAN NICOLAS', 'SAN NICOLAS', 'PUEBLO ESTHER', 'GRANADERO BAIGORRIA', 'PEREZ', 'ACEBAL', 'OTRA']
 
-  
-    //coberturas para otras localidad por situacion laboral
 
-    const coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Omint', 'Britanica Salud', 'Britanica', 'Plenit']
-
-    const coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica','Britanica Salud', 'Plenit' ]
-
-    const coberturasMayor60 = ['Britanica Salud', 'Britanica'];
-
-  
-
-    const OTRAS = ['Prevencion Salud', 'Omint' ]
-    //****Hijos ****/
+        //****Hijos ****/
     //validacio si es que hay hijos
 
     if (hijosMayores.every(elemento => elemento === '')) {
@@ -95,10 +82,63 @@ const coberturasDisponibles = async (req, res) => {
     const totalHijos = parseInt(hijosMayores[0]) + parseInt(hijosMenores[0]);
 
     // Verifica si la suma es mayor a 5
-    if (totalHijos > 5) {
+    if (totalHijos >= 5) {
         // Si la suma es mayor a 5, renderiza solo el botón de consulta
         return res.render('form', { mostrarBoton: true });
     }
+    //localidad
+
+    const localidades = ['ROSARIO', 'FUNES', 'ROLDAN', 'SAN NICOLAS', 'SAN NICOLAS', 'PUEBLO ESTHER', 'GRANADERO BAIGORRIA', 'PEREZ', 'ACEBAL', 'OTRA']
+
+    let coberturasExternasSueldo = [];
+    let coberturasExternasParticular = [];
+    
+
+  
+    //coberturas para otras localidad por situacion laboral
+    switch (localidad[0]) {
+        case 'ROSARIO':
+            if (totalHijos == 0) {
+                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud', 'Britanica', 'Plenit'];
+                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica', 'Britanica Salud', 'Plenit'];
+            } else {
+                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud', 'Plenit'];
+                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud', 'Plenit'];
+            }
+            break;
+        case 'ENTRE RIOS':
+        case 'BUENOS AIRES':
+        case 'SANTA FE':
+            coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'OMINT']
+    
+            coberturasExternasParticular = ['Avalian', 'Prevencion Salud']
+                break;
+        case 'CORDOBA':
+        case 'TIERRA DEL FUEGO':
+        case 'SANTA CRUZ':
+        case 'CHUBUT':
+        case 'RIO NEGRO':
+        case 'SAN LUIS':
+            coberturasExternasSueldo = ['Prevencion Salud', 'OMINT']
+    
+            coberturasExternasParticular = [ 'Prevencion Salud']
+                break;    
+
+    
+        default:
+            break;
+    }
+
+    
+    const coberturasMayor60 = ['Britanica Salud', 'Britanica', 'Avalian', 'Alianza Medica'];
+
+    const coberturasMayor65 = ['Britanica Salud', 'Britanica', 'Alianza Medica'];
+    const coberturasMayor90 = ['Britanica Salud', 'Britanica'];
+
+  
+
+    const OTRAS = ['Prevencion Salud', 'Omint' ]
+
         
     //tipo de individuo
 
@@ -132,7 +172,7 @@ const coberturasDisponibles = async (req, res) => {
 
     try {
 
-        if(edad >=60){
+        if(edad >=50 && edad <=60){
             
             opcionLocalidad = coberturasMayor60
             sqlQuery = `
@@ -146,9 +186,37 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
+        if(edad >60 && edad <= 65){
+            
+            opcionLocalidad = coberturasMayor65
+            sqlQuery = `
+            SELECT plan, NombrePlan
+            FROM cotizaciones 
+            WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
+            AND ? > Rango_Edad_min
+            AND ? <= Rango_Edad
+            AND tributo <> 'Particular'`;
+        // Parámetros para la consulta SQL
+            params = [...opcionLocalidad, edad, edad];
+
+        }
+        if(edad >=65){
+            
+            opcionLocalidad = coberturasMayor90
+            sqlQuery = `
+            SELECT plan, NombrePlan
+            FROM cotizaciones 
+            WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
+            AND ? > Rango_Edad_min
+            AND ? <= Rango_Edad
+            AND tributo <> 'Particular'`;
+        // Parámetros para la consulta SQL
+            params = [...opcionLocalidad, edad, edad];
+
+        }
        
         //primer condicionante localidad y sueldo
-        if (tributo != 'particular' && edad < 60){
+        if (tributo != 'particular' && edad < 60 && tributo != 'monotributo'){
               
     
 
@@ -160,14 +228,14 @@ const coberturasDisponibles = async (req, res) => {
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND tributo <> 'Particular'`;
+            AND tributo <> 'Sueldo'`;
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];
             console.log(params)
         }
 
         //segundo condicionante localidad y particular
-        if (tributo === 'particular' && edad < 60){
+        if (tributo != 'sueldo' && edad < 60){
 
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasParticular
 
@@ -177,7 +245,7 @@ const coberturasDisponibles = async (req, res) => {
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND tributo <> 'Sueldo'`;
+            AND tributo <> 'particular'`;
         
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];

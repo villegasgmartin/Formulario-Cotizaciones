@@ -4,7 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizador</title>
-    <link rel="stylesheet" href="style.css">    
+    <link rel="stylesheet" href="style.css"> 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMN9ZCTS83"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FMN9ZCTS83');
+    </script>   
 </head>
 <body>
 
@@ -83,16 +92,17 @@
             <span>Vivo en </span><select name="localidad" id="select-localidad" required>
                 <option  id="placeholder" value="base" disabled selected>Selecciona una opción</option>
                 
-                <option value="ROSARIO">Rosario</option>
-                <option value="FUNES">Funes</option>
-                <option value="ROLDAN">Roldan</option>
-                <option value="SAN NICOLAS">San Nicolas</option>
-                <option value="ARROYO SECO">Arroyo Seco</option>
-                <option value="PUEBLO ESTHER">Pueblo ESTHER</option>
-                <option value="GRANADERO BAIGORRIA">Granadero Baigorria</option>
-                <option value="PEREZ">Perez</option>
-                <option value="ACEBAL">Acebal</option>
-                <option value="OTRA">Otra</option>
+                <option value="ROSARIO">Rosario y zonas aledañas</option>
+                <option value="ENTRE RIOS">Entre Rios</option>
+                <option value="BUENOS AIRES">Buenos Aires</option>
+                <option value="SANTA FE">Santa Fe</option>
+                <option value="CORDOBA">Cordoba</option>
+                <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
+                <option value="SANTA CRUZ">Santa Cruz</option>
+                <option value="CHUBUT">Chubut</option>
+                <option value="RIO NEGRO">Rio Negro</option>
+                <option value="SAN LUIS">San Luis</option>
+                <option value="OTRA">Resto del Pais</option>
             </select>
         </div>
         
@@ -122,10 +132,13 @@
                 <option id="placeholder" value="vacio" disabled selected>Selecciona una opción</option>
                 <option value="Categorias A,B,C">Categorias A,B,C</option>
                 <option value="Categorias D">Categorias D</option>
-                <option value="Categorias H">Categorias H</option>
+                <option value="Categorias E">Categorias E</option>
                 <option value="Categorias F">Categorias F</option>
                 <option value="Categorias G">Categorias G</option>
+                <option value="Categorias H">Categorias H</option>
                 <option value="Categorias I">Categorias I</option>
+                <option value="Categorias J">Categorias J</option>
+                <option value="Categorias K">Categorias K</option>
             </select>
             <input type="number" id="tipo-monutributo" disabled>
         </div>

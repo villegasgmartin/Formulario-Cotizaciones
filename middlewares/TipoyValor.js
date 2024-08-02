@@ -17,84 +17,87 @@ const pool = require('../database');
 
 const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
 
-        const hijosTotales = hijosMayores + hijosMenores
-        if(hijosTotales>5){
-                hijosTotales = 5;
-        }
+    const hijosTotales = hijosMayores + hijosMenores
+    if(hijosTotales>5){
+            hijosTotales = 5;
+    }
+
+    if((NombrePlan =='Pulso' || NombrePlan=='BS A Mayor') && hijosTotales==0 ){
+        console.log(tipo, hijosMayores, plan, NombrePlan, hijosMenores, hijosTotales)
+        tipo = 'Individuo';
+        return tipo
+    }
+    if(tipo =='pareja'  || tipo =='familia' && hijosTotales==0){
+        switch (plan) {
+            case 'OMINT':
+                    tipo = 'Individuo';
+                break;
+            case 'Avalian':
+                tipo = 'Individuo';
+                break;
+            case 'Alianza Medica':
+                tipo = 'Individuo';
+                break;
   
-        if(NombrePlan =='Pulso' || NombrePlan=='BS A Mayor' && tipo =='pareja'  || tipo =='familia' && hijosTotales==0 ){
-            tipo = 'Individuo';
-            return tipo
+            default: 
+            tipo ='Pareja';
+                break;
         }
-        if(tipo =='pareja'  || tipo =='familia' && hijosTotales==0){
-            switch (plan) {
-                case 'OMINT':
-                        tipo = 'Individuo';
-                    break;
-                case 'Avalian':
-                    tipo = 'Individuo';
-                    break;
-                case 'Alianza Medica':
-                    tipo = 'Individuo';
-                    break;
-      
-                default: 
-                tipo ='Pareja';
-                    break;
-            }
 
-            return tipo
-        }
-       
-        if(tipo =='pareja' || tipo =='familia' && hijosTotales>0){
-            
-            switch (plan) {
-                case 'Integral Salud':
-                        tipo = `pareja+${hijosTotales}Hijo`;
-                    break;
-                case 'Prevencion Salud':
-                        tipo = `pareja+${hijosTotales}Hijo`;
-                    break;
-                case 'Britanica Salud':
-                    tipo = `pareja`;
-                    break;
-      
-                default: 
-                tipo ='Individuo';
-                    break;
-            }
-
-            return tipo
-       }
-       if(tipo =='hijos' && hijosTotales>0){
-            
+        return tipo
+    }
+   
+    if(tipo =='pareja' || tipo =='familia' && hijosTotales>0){
+        
         switch (plan) {
             case 'Integral Salud':
-                    tipo = `Individuo+${hijosTotales}Hijo`;
+                    tipo = `pareja+${hijosTotales}Hijo`;
                 break;
             case 'Prevencion Salud':
-                    tipo = `Individuo+${hijosTotales}Hijo`;
+                    tipo = `pareja+${hijosTotales}Hijo`;
                 break;
-     
+            case 'Britanica Salud':
+                tipo = `pareja`;
+                break;
+            case 'Britanica':
+                tipo = `pareja`;
+            break;
+  
             default: 
-            tipo='Individuo';
+            tipo ='Individuo';
                 break;
         }
 
         return tipo
    }
-   if(tipo =='hijos' && hijosTotales==0){
-    tipo = `Individuo`;
+   if(tipo =='hijos' && hijosTotales>0){
+        
+    switch (plan) {
+        case 'Integral Salud':
+                tipo = `Individuo+${hijosTotales}Hijo`;
+            break;
+        case 'Prevencion Salud':
+                tipo = `Individuo+${hijosTotales}Hijo`;
+            break;
+ 
+        default: 
+        tipo='Individuo';
+            break;
+    }
+
     return tipo
 }
+if(tipo =='hijos' && hijosTotales==0){
+tipo = `Individuo`;
+return tipo
+}
 else{
-    tipo = 'Individuo';
+tipo = 'Individuo';
 }
 
 
 return tipo;
 }
-
 
 //descuentos y forma de calculo
 
@@ -124,23 +127,32 @@ return tipo;
 function aportesMonotributista (monutributo){
     switch (monutributo) {
         case 'Categorias A,B,C':
-            descuento = 3500
+            descuento = 10500
             break;
         case 'Categorias D':
-                descuento = 4100
+                descuento = 12000
+            break;
+        case 'Categorias E':
+                descuento = 18000
             break;
         case 'Categorias H':
-                descuento = 4400
+                descuento = 28000
             break;
         case 'Categorias F':
-                descuento = 4900
+                descuento = 20000
             break;
         case 'Categorias G':
-            descuento = 5100
+            descuento = 21000
                 break;
         case 'Categorias I':
-            descuento = 6300
+            descuento = 34000
                 break;
+        case 'Categorias J':
+            descuento = 39000
+                break;
+        case 'Categorias K':
+            descuento = 45000
+            break;
         case 'vacio':
             descuento = 0
                 break;
@@ -234,7 +246,7 @@ function encontrarNumeroMasGrande(num1, num2) {
 
 const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores)=>{
 
-
+console.log(tipo)
 
     queryGeneral = `SELECT Cotizacion FROM cotizaciones 
     WHERE plan = ?
@@ -280,7 +292,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     //plan=='Prevencion Salud'*********************
     if(plan=='Prevencion Salud'){
 
-        return 'Consultar Valor'
+        
      
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'
@@ -290,7 +302,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         const maximo = Math.max(edad, edadPareja);
 
         params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
+
         const valorIncial = await pool.query(queryGeneral, params)
+        console.log(valorIncial, params);
         price = parseFloat(valorIncial[0][0].Cotizacion);
        
         if(tipoMonutributo){
@@ -306,13 +320,13 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }
 
         let costo = price - descuento - descuentoSueldo
-        // return Math.round(costo * 0.5)
-        return 'Consultar Valor'
+        return "$" + Math.round(costo)
+        
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
 
-        return 'Consultar Valor'
+       let hijosOmint = hijosMayores + hijosMenores;
     
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'
@@ -326,7 +340,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         
 
         if(edadPareja>0){
-            params2 = [plan, NombrePlan,edadPareja, queryGeneral, tipo,tributo]
+            params2 = [plan, NombrePlan,edadPareja, edadPareja, tipo,tributo]
 
 
             const valorIncial2 = await pool.query(queryGeneral, params2)
@@ -336,9 +350,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }
        
 
-        if(hijosMayores>0){
+        if(hijosOmint==1){
 
-            params3 = [plan, NombrePlan,21, 21, 'HijoMayor',tributo]
+            params3 = [plan, NombrePlan,21, 21, 'Hijo',tributo]
             
 
             const valorIncial3 = await pool.query(queryGeneral, params3)
@@ -347,9 +361,9 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }else{
             price3=0
         }
-        if(hijosMenores>0){
+        if(hijosOmint>=2){
 
-            params4 = [plan, NombrePlan,20, 20, 'HijoMenor',tributo]
+            params4 = [plan, NombrePlan,20, 20, 'Hijos',tributo]
             
 
             const valorIncial4 = await pool.query(queryGeneral, params4)
@@ -361,7 +375,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
       
         
-        let price = price1 + price2 + price3*hijosMayores + price4*hijosMenores  
+        let price = price1 + price2 + price3 + price4*(hijosOmint-1)  
         
 
 
@@ -379,8 +393,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
         }
         let costo = price - descuento- descuentoSueldo
      
-        // return Math.round(costo * 0.85)
-        return 'Consultar Valor'
+        return "$" + Math.round(costo)
+        // return 'Consultar Valor'
     }
     //plan=='Britanica Salud'*********************
     if(plan == 'Britanica Salud' || plan == 'Britanica'){
@@ -393,7 +407,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
 
         if(tipo == 'Individuo'){
             params = [plan, NombrePlan,edad, edad, tipo,tributo]
-            
+            console.log(params, 'britanica');
             const valorIncial4 = await pool.query(queryGeneral, params)
             price4 = parseFloat(valorIncial4[0][0].Cotizacion) || 0;
         }else{
@@ -494,7 +508,7 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
     //plan=='Avalian'*********************
     if(plan=='Avalian'){
 
-        return 'Consultar Valor'
+       
        
         if (tributo ==='monotributo' || tributo === 'sueldo'){
             tributo = 'Sueldo'
@@ -568,8 +582,8 @@ const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, trib
             descuentoSueldo = 0
         }
         let price = price1 + price2 + price3 + price4 + price5 - descuento -descuentoSueldo;
-        // return Math.round(price  * 0.55);
-        return 'Consultar Valor'
+        return "$" + Math.round(price);
+        
     }
 
 

@@ -119,6 +119,7 @@ const coberturasDisponibles = async (req, res) => {
         case 'CHUBUT':
         case 'RIO NEGRO':
         case 'SAN LUIS':
+        case 'OTRA':
             coberturasExternasSueldo = ['Prevencion Salud', 'OMINT']
     
             coberturasExternasParticular = [ 'Prevencion Salud']
@@ -137,7 +138,7 @@ const coberturasDisponibles = async (req, res) => {
 
   
 
-    const OTRAS = ['Prevencion Salud', 'Omint' ]
+    // const OTRAS = ['Prevencion Salud', 'Omint' ]
 
         
     //tipo de individuo

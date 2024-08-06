@@ -245,7 +245,7 @@ function encontrarNumeroMasGrande(num1, num2) {
 }
 
 const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores)=>{
-
+console.log('plan: ', plan, 'tributo', tributo)
 console.log(tipo)
 
     queryGeneral = `SELECT Cotizacion FROM cotizaciones 
@@ -304,7 +304,6 @@ console.log(tipo)
         params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
 
         const valorIncial = await pool.query(queryGeneral, params)
-        console.log(valorIncial, params);
         price = parseFloat(valorIncial[0][0].Cotizacion);
        
         if(tipoMonutributo){
@@ -325,10 +324,10 @@ console.log(tipo)
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
-
+        console.log('entro a omint')
        let hijosOmint = hijosMayores + hijosMenores;
     
-        if (tributo ==='monotributo' || tributo === 'sueldo'){
+        if (tributo === 'sueldo'){
             tributo = 'Sueldo'
          }
         params1 = [plan, NombrePlan,edad, edad, tipo,tributo]

@@ -120,7 +120,7 @@ const coberturasDisponibles = async (req, res) => {
         case 'RIO NEGRO':
         case 'SAN LUIS':
         case 'OTRA':
-            coberturasExternasSueldo = ['Prevencion Salud', 'OMINT']
+            coberturasExternasSueldo = ['OMINT', 'Prevencion Salud' ]
     
             coberturasExternasParticular = [ 'Prevencion Salud']
                 break;    
@@ -218,26 +218,27 @@ const coberturasDisponibles = async (req, res) => {
        
         //primer condicionante localidad y sueldo
         if ((tributo != 'particular' && edad < 50 && tributo != 'monotributo') && (!edadPareja || (edadPareja < 50))) {
-            console.log('4'); 
+            
     
 
 
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasSueldo
+            
             sqlQuery = `
             SELECT plan, NombrePlan
             FROM cotizaciones 
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND tributo <> 'Sueldo'`;
+            AND tributo = 'Sueldo'`;
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];
-            console.log(params)
+            
         }
 
         //segundo condicionante localidad y particular
         if ((tributo != 'sueldo' && edad < 50) & (!edadPareja || (edadPareja < 50))){
-            console.log('5');
+            
             opcionLocalidad = localidad==='OTRA' ? OTRAS : coberturasExternasParticular
 
             sqlQuery = `
@@ -246,7 +247,7 @@ const coberturasDisponibles = async (req, res) => {
             WHERE plan IN (${opcionLocalidad.map(() => '?').join(', ')}) 
             AND ? > Rango_Edad_min
             AND ? <= Rango_Edad
-            AND tributo <> 'particular'`;
+            AND tributo = 'particular'`;
         
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];
@@ -255,6 +256,7 @@ const coberturasDisponibles = async (req, res) => {
         //condicional 
         const result = await pool.query(sqlQuery, params);
         const coberturas = result[0]
+
     
        const CoberturasPropuestasSet = new Set();
 
@@ -281,7 +283,6 @@ const coberturasDisponibles = async (req, res) => {
            
            // Llama a la función coberturaSeleccionas para obtener los planes seleccionados
            const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
-       
            // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
            const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto, hijosMenores);
          

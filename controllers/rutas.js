@@ -99,11 +99,11 @@ const coberturasDisponibles = async (req, res) => {
     switch (localidad[0]) {
         case 'ROSARIO':
             if (totalHijos == 0) {
-                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud', 'Britanica', 'Plenit'];
-                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica', 'Britanica Salud', 'Plenit'];
+                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud', 'Britanica'];
+                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica', 'Britanica Salud'];
             } else {
-                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud', 'Plenit'];
-                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud', 'Plenit'];
+                coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'OMINT', 'Britanica Salud'];
+                coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud'];
             }
             break;
         case 'ENTRE RIOS':

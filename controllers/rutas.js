@@ -307,7 +307,7 @@ const coberturasDisponibles = async (req, res) => {
        const CoberturasPropuestas = Array.from(CoberturasPropuestasSet).map(cobertura => JSON.parse(cobertura));
        
        // Devuelve las coberturas propuestas en formato JSON
-       return res.render('form', { CoberturasPropuestas });
+       return res.render('form', { CoberturasPropuestas, VerMas:true });
 
     } catch (error) {
         res.status(500).json(error);

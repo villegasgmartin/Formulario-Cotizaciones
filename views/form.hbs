@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador</title>
+    <meta name="keywords" content="cobertura medica, cotizador online coberturas, obras sociales, plan de salud, cotiza tu plan de salud">
+    <title>Cotiza tu Cobertura Medica Online | Coberturas Medicas Argentinas</title>
+    <meta name="description" content="En Tu Plan B te ofrecemos un cotizador online que te permite al instante conocer tu prepaga ideal. Compara entre varias coberturas y elegi hoy la tuya.">
     <link rel="stylesheet" href="style.css"> 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMN9ZCTS83"></script>
@@ -19,7 +21,7 @@
 
    <nav>
         <div class="logo">
-            <img src="https://tuplanb.com.ar/wp-content/uploads/2024/03/5-1.png" alt="Logo">
+            <a href="https://tuplanb.com.ar/"><img src="https://tuplanb.com.ar/wp-content/uploads/2024/03/5-1.png" alt="Logo"></a>
         </div>
         <div class="links">
             <a href="https://tuplanb.com.ar/#cotizadorancla">¿Cómo funciona?</a>
@@ -174,14 +176,22 @@
    
     <div id="planesDiv">
             {{#if mostrarBoton}}
+            
     <div class="consulta-container">
         <button class="mas-info-btn" onclick="window.location.href = `https://wa.me/+5493413151350?text=Buenas%20tardes,%20quisiera%20averiguar%20sobre%20la%20cobertura`">Consultar Valores</button>
     </div>
 {{else}}
+ {{#if VerMas}}
+         <img src="https://res.cloudinary.com/dj3akdhb9/image/upload/v1733683383/icons8-flecha-ampliar-100_xu0zgn.png" alt="flecha" style="width: 60px; height:auto; object-fit:contain; margin:auto">
+        {{/if}}
     <div id="planesDiv">
+       
         {{#each CoberturasPropuestas}}
+
             <div class="cobertura">
+                
                 <h2 class="nombre-comp">{{plan}}</h2>
+                <img class="foto-comp" src="" alt="">
                 <div>
                     
                     <p class="plan">{{NombrePlan}}</p>
@@ -208,6 +218,58 @@
     </div>
 {{/if}}
     </div>
+
+     <div class="accordion">
+        <h2 class="faq">Preguntas Frecuentes</h1>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Qué ventajas ofrece usar nuestro cotizador de cobertura médica?</button>
+          <div class="accordion-content">
+            <p>Nuestro cotizador te permite comparar diferentes opciones de cobertura médica de forma rápida y sencilla. Podrás encontrar el plan que mejor se adapte a tus necesidades y presupuesto en minutos.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Qué tipos de cobertura médica están disponibles en tu región?</button>
+          <div class="accordion-content">
+            <p>Las coberturas médicas que ofrecemos varían según tu ubicación. Por eso, al usar nuestro cotizador, te pediremos información sobre dónde resides para mostrarte las opciones disponibles en tu zona.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Qué incluye un plan de medicina prepaga estándar?</button>
+          <div class="accordion-content">
+            <p>Un plan estándar generalmente cubre consultas médicas, estudios de diagnóstico, internaciones y acceso a farmacias con descuentos. Algunos planes incluyen beneficios adicionales como odontología y oftalmología.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Puedo cambiar de plan de salud una vez que he elegido uno?</button>
+          <div class="accordion-content">
+            <p>Sí, es posible cambiar de plan. Dependiendo de la compañía, puedes hacerlo tras cumplir ciertos períodos mínimos de permanencia o al actualizar tus necesidades de cobertura.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Cómo comparo coberturas de diferentes prepagas?</button>
+          <div class="accordion-content">
+            <p>Con nuestro cotizador, solo necesitas ingresar tus datos y preferencias. Te mostraremos un listado claro con opciones para que compares precios, beneficios y niveles de cobertura.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Qué diferencias existen entre una obra social y una medicina prepaga?</button>
+          <div class="accordion-content">
+            <p>Las obras sociales suelen ser servicios obligatorios que dependen de aportes laborales, mientras que la medicina prepaga es un servicio privado que ofrece una mayor personalización y beneficios adicionales.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Es posible incluir a mi familia en el mismo plan de salud?</button>
+          <div class="accordion-content">
+            <p>¡Por supuesto! Muchos planes ofrecen opciones familiares que pueden incluir cónyuge, hijos y otros dependientes con precios y beneficios adaptados.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">¿Cómo puedo obtener ayuda si tengo dudas durante el proceso de cotización?</button>
+          <div class="accordion-content">
+            <p>Si tienes preguntas, puedes comunicarte con nosotros a través de nuestro número de WhatsApp. Estamos disponibles para ayudarte en cada paso del proceso.</p>
+          </div>
+        </div>
+      </div>
 
         <div class="footer-container">
 			<div>

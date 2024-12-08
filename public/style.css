@@ -8,6 +8,10 @@
    
   
 }
+body{
+    background-color: #F8F5F1;
+}
+
 h2, p, label{
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
@@ -185,14 +189,19 @@ div.cobertura{
    
     border-radius: 20px;
     padding: 25px 30px;
-    background-color: #f2f2f2;
+    background-color: #fff;
     box-shadow: 2px 2px rgba(0,0,0,0.2);
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-
+.foto-comp{
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+    margin: auto;
+}
 /*colores coberturas*/
 /*'Avalian' == #00986B, 
 'Prevencion Salud' == #E10173, 
@@ -209,6 +218,7 @@ Britanica Salud o Britanica* ==#E4002B */
     font-family: "Ubuntu", sans-serif;
     font-weight: 700;
     font-style: normal;
+    display: none;
 }
 
 .plan{
@@ -233,7 +243,7 @@ div{
     column-gap: 20px;
     justify-content: center;
     max-width: 1200px;
-    padding:40px 20px 60px 20px;
+    padding:30px 20px 10px 20px;
     margin:auto;
 
 }
@@ -395,3 +405,56 @@ nav {
     color:#fff;
     font-size: 14px;
 }
+
+/*estilos acordion*/
+
+  
+  .accordion {
+    max-width: 800px;
+    margin: 0 auto 70px;
+    overflow: hidden;
+    padding: 0 30px;
+
+  }
+  
+  h2.faq {
+    color: #244274;
+    font-family: "Ubuntu", Sans-serif;
+    font-size: 36px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  .accordion-item {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+
+  }
+  
+  .accordion-header {
+    width: 100%;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 10px;
+    color: #000;
+    border: none;
+    outline: none;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .accordion-header:hover {
+    background: #FAE7E3;
+  }
+  
+  .accordion-content {
+    padding: 15px 20px;
+    display: none;
+    background: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  

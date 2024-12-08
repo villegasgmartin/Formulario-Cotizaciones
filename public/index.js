@@ -233,36 +233,65 @@ console.log(resultados)
 
 resultados.forEach(valor => {
     const compañia = valor.children[0].textContent;
-    console.log(compañia)
+    const foto = valor.children[1].src
+    console.log(valor)
 
     // Condicionales para cambiar el color dependiendo del nombre de la compañía
     switch (compañia) {
         case 'Avalian':
             valor.children[0].style.color = '#00986B';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678611/avalian_logo-color__1_-removebg-preview_b8ws4i.png'
+
             break;
         case 'Omint':
             valor.children[0].style.color = '#002583';
+            valor.children[0].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678476/omint_vxuug2.png'
+
             break;
         case 'Prevencion Salud':
             valor.children[0].style.color = '#E10173';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/prevencion_yweoqc.png'
+
         break;
         case 'Alianza Medica':
             valor.children[0].style.color = '#007EA7';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678476/alianza_yh13hv.png'
+
         break;
         case 'Integral Salud':
             valor.children[0].style.color = '#25907E';
-        break;
-        case 'Omint':
-            valor.children[0].style.color = '#002583';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/integral_q6crrw.png'
+
         break;
         case 'Britanica Salud':
             valor.children[0].style.color = '#E4002B';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/britanica_logo_kjpsnf.png'
         break;
         case 'Britanica':
             valor.children[0].style.color = '#E4002B';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/britanica_logo_kjpsnf.png'
+
         break;
         default:
             // Por defecto, no se cambia el color
             break;
     }
 });
+
+
+//acordion 
+
+document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+  
+      button.classList.toggle('active');
+  
+      if (button.classList.contains('active')) {
+        content.style.display = 'block';
+      } else {
+        content.style.display = 'none';
+      }
+    });
+  });
+  

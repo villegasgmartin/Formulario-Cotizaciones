@@ -237,7 +237,7 @@ resultados.forEach(valor => {
     console.log(valor)
 
     // Condicionales para cambiar el color dependiendo del nombre de la compañía
-    switch (compañia) {
+    switch (compañia) { 
         case 'Avalian':
             valor.children[0].style.color = '#00986B';
             valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678611/avalian_logo-color__1_-removebg-preview_b8ws4i.png'

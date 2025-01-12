@@ -392,7 +392,7 @@ console.log(tipo)
         }
         let costo = price - descuento- descuentoSueldo
      
-        return "$" + Math.round(costo)
+        // return "$" + Math.round(costo)
         // return 'Consultar Valor'
     }
     //plan=='Britanica Salud'*********************

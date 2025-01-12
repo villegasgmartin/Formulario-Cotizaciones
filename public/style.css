@@ -12,7 +12,7 @@ body{
     background-color: #F8F5F1;
 }
 
-h2, p, label{
+h2, p, label, a{
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
     font-style: normal;

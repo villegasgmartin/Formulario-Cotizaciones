@@ -272,6 +272,10 @@ resultados.forEach(valor => {
             valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/britanica_logo_kjpsnf.png'
 
         break;
+        case 'DOCTORED':
+            valor.children[0].style.color = '#383D8A';
+            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1737159086/doctored-medicina-privada-removebg-preview_1_ol7ikw.png'
+        break;
         default:
             // Por defecto, no se cambia el color
             break;

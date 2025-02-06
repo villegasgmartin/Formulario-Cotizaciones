@@ -338,15 +338,61 @@ console.log(tipo)
 
         if(NombrePlan=='PLAN500PLUS' && tributo=='sueldo'){
             
+            const maximo = Math.max(edad, edadPareja);
+            params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
+            const valorIncial = await pool.query(queryGeneral, params)
+            if(valorIncial[0].length > 0){
+                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
+                price = parseFloat(valorIncial[0][0].Cotizacion);
+                // if(tipoMonutributo){
+                //     descuento = aportesMonotributista(tipoMonutributo)
+                // }else{
+                //     descuento = 0
+                // }
+        
+                // if(sueldoBruto){
+                //     descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+                // }else{
+                //     descuentoSueldo = 0
+                // }
+        
+                // let costo = price
+                return "$" + price + "(solo el aporte)"
+            }
 
-            price = 0
-            console.log("entro a doctores y en el plan q no paga el aporte");
-            return "$" + price + "(solo el aporte)"
-
-        }else{
-           if (tributo ==='monotributo' || tributo === 'sueldo'){
-            tributo = 'monotributo'
-         }
+        }
+        if(tributo=='monotributo'){
+          
+            // tributo = 'monotributo'
+         
+            const maximo = Math.max(edad, edadPareja);
+            params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
+            const valorIncial = await pool.query(queryGeneral, params)
+            if(valorIncial[0].length > 0){
+                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
+                price = parseFloat(valorIncial[0][0].Cotizacion);
+                if(tipoMonutributo){
+                    descuento = aportesMonotributista(tipoMonutributo)
+                }else{
+                    descuento = 0
+                }
+        
+                if(sueldoBruto){
+                    descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+                }else{
+                    descuentoSueldo = 0
+                }
+        
+                let costo = price - descuento - descuentoSueldo
+                return "$" + Math.round(costo)
+            }
+            
+          
+        }
+        if(NombrePlan!='PLAN500PLUS' && tributo=='sueldo'){
+          
+            // tributo = 'monotributo'
+         
             const maximo = Math.max(edad, edadPareja);
             params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
@@ -372,7 +418,34 @@ console.log(tipo)
           
         }
        
-       
+        if(tributo=='particular'){
+          
+            // tributo = 'monotributo'
+         
+            const maximo = Math.max(edad, edadPareja);
+            params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
+            const valorIncial = await pool.query(queryGeneral, params)
+            if(valorIncial[0].length > 0){
+                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
+                price = parseFloat(valorIncial[0][0].Cotizacion);
+                if(tipoMonutributo){
+                    descuento = aportesMonotributista(tipoMonutributo)
+                }else{
+                    descuento = 0
+                }
+        
+                if(sueldoBruto){
+                    descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+                }else{
+                    descuentoSueldo = 0
+                }
+        
+                let costo = price - descuento - descuentoSueldo
+                return "$" + Math.round(costo)
+            }
+            
+          
+        }
 
         
     }

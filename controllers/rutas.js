@@ -133,7 +133,7 @@ const coberturasDisponibles = async (req, res) => {
         case 'RIO NEGRO':
         case 'SAN LUIS':
         case 'OTRA':
-            coberturasExternasSueldo = ['OMINT', 'Prevencion Salud', 'DOCTORED']
+            coberturasExternasSueldo = ['Prevencion Salud', 'DOCTORED']
     
             coberturasExternasParticular = [ 'Prevencion Salud', 'DOCTORED']
                 break;    

@@ -82,7 +82,7 @@ const coberturasDisponibles = async (req, res) => {
     const totalHijos = parseInt(hijosMayores[0]) + parseInt(hijosMenores[0]);
 
     // Verifica si la suma es mayor a 5
-    if (totalHijos >= 5) {
+    if (totalHijos >= 5 || edad > 60 || edadPareja > 60) {
         // Si la suma es mayor a 5, renderiza solo el botón de consulta
         return res.render('form', { mostrarBoton: true });
     }
@@ -100,21 +100,21 @@ const coberturasDisponibles = async (req, res) => {
         case 'ROSARIO':
             if (totalHijos == 0) {
                 if(edad >= 45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud', 'Britanica', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica', 'Britanica Salud','DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud','DOCTORED'];
 
                 }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Britanica', 'Alianza Medica', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
                 }
             } else {
                 if(edad>=45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'Britanica Salud', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
 
                 }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'Alianza Medica', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
 
                 }
             }
@@ -144,10 +144,10 @@ const coberturasDisponibles = async (req, res) => {
     }
 
     
-    const coberturasMayor60 = ['Britanica Salud', 'Britanica', 'Avalian', 'Alianza Medica'];
+    const coberturasMayor60 = [ 'Avalian'];
 
-    const coberturasMayor65 = ['Britanica Salud', 'Britanica', 'Alianza Medica'];
-    const coberturasMayor90 = ['Britanica Salud', 'Britanica'];
+    // const coberturasMayor65 = ['Britanica Salud', 'Britanica', 'Alianza Medica'];
+    // const coberturasMayor90 = ['Britanica Salud', 'Britanica'];
 
   
 
@@ -182,7 +182,7 @@ const coberturasDisponibles = async (req, res) => {
     //     tributo = 'Sueldo'
     // }
 
-
+    console.log("1")
 
     try {
 
@@ -200,6 +200,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
+        console.log("2")
         if ((edad > 60 && edad < 65) || (edadPareja && edadPareja > 60 && edadPareja < 65)){
             console.log('2');
             opcionLocalidad = coberturasMayor65
@@ -214,6 +215,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
+        console.log("3")
         if ((edad >= 65) || (edadPareja && edadPareja >= 65)){
             console.log('3');
             opcionLocalidad = coberturasMayor90
@@ -228,6 +230,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
+        console.log("4")
        
         //primer condicionante localidad y sueldo
         if ((tributo != 'particular' && edad < 50 && tributo != 'monotributo') && (!edadPareja || (edadPareja < 50))) {
@@ -248,6 +251,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
             
         }
+        console.log("5")
 
         //segundo condicionante localidad y particular
         if ((tributo != 'sueldo' && edad < 50) & (!edadPareja || (edadPareja < 50))){
@@ -265,6 +269,7 @@ const coberturasDisponibles = async (req, res) => {
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];
         }
+        console.log("6", sqlQuery, params)
 
         //condicional 
         const result = await pool.query(sqlQuery, params);
@@ -272,7 +277,7 @@ const coberturasDisponibles = async (req, res) => {
 
     
        const CoberturasPropuestasSet = new Set();
-
+       console.log("7", coberturas)
        for (let i = 0; i < coberturas.length; i++) {
            let cantidad = 0;
            let descuento = 0;
@@ -297,7 +302,15 @@ const coberturasDisponibles = async (req, res) => {
            // Llama a la función coberturaSeleccionas para obtener los planes seleccionados
            const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
            // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
-           const valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto, hijosMenores);
+
+           console.log(cobertura,tipoPersona, descripcion, planes  )
+
+           
+            valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto, hijosMenores);
+
+           
+
+           console.log(valorCobertura)
          
            // Agrega la cobertura propuesta al conjunto CoberturasPropuestasSet
            CoberturasPropuestasSet.add(JSON.stringify({
@@ -315,6 +328,7 @@ const coberturasDisponibles = async (req, res) => {
                hijos: hijosMayores + hijosMenores
            }));
        }
+
        
        // Convertir el conjunto en un arreglo nuevamente para poder enviarlo como JSON
        const CoberturasPropuestas = Array.from(CoberturasPropuestasSet).map(cobertura => JSON.parse(cobertura));
@@ -324,6 +338,7 @@ const coberturasDisponibles = async (req, res) => {
 
     } catch (error) {
         res.status(500).json(error);
+        console.log(error);
     }
 
 } 

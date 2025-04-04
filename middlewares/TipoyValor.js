@@ -16,18 +16,18 @@ const pool = require('../database');
 
 
 const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
-
+    console.log("entro a persona" , tipo, hijosMayores, plan, NombrePlan, hijosMenores)
     const hijosTotales = hijosMayores + hijosMenores
     if(hijosTotales>5){
             hijosTotales = 5;
     }
-
+    console.log("hijos totales", hijosTotales)
     if((NombrePlan =='Pulso' || NombrePlan=='BS A Mayor') && hijosTotales==0 ){
-        console.log(tipo, hijosMayores, plan, NombrePlan, hijosMenores, hijosTotales)
+        
         tipo = 'Individuo';
         return tipo
     }
-    if(tipo =='pareja'  || tipo =='familia' && hijosTotales==0){
+    if((tipo =='pareja'  || tipo =='familia') && hijosTotales==0){
         switch (plan) {
             case 'OMINT':
                     tipo = 'Individuo';
@@ -58,6 +58,7 @@ const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
                 break;
             case 'DOCTORED':
                 tipo = `pareja+${hijosTotales}Hijo`;
+                break;
             case 'Britanica Salud':
                 tipo = `pareja`;
                 break;

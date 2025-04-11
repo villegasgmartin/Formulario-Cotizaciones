@@ -73,6 +73,8 @@ localidad.addEventListener('change', ()=>{
 
 })
 
+
+
 // cobertura.addEventListener('change', ()=>{
 //     let valor = cobertura.value;
 //     if (valor == 'Otra'){
@@ -135,20 +137,33 @@ document.addEventListener('DOMContentLoaded', function () {
 //validacion formulario
 
 const form = document.querySelector('.form-cotiza');
+const btnOtraConsulta = document.querySelector('.otra-consulta');
 
 
 form.addEventListener('submit', (e) => {
-    console.log('oubto1')
     let selectLocalidad = document.getElementById('select-localidad');
-    console.log('oubto3', selectLocalidad.value)
     if (selectLocalidad.value == "base" ) {
         alert("Por favor seleccione Localidad válida.");
         e.preventDefault(); // Evita que el formulario se envíe
     }
-
+   
 });
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    const resultados = document.querySelectorAll('.cobertura');
+    const form = document.querySelector('.form-cotiza');
+    const btnOtraConsulta = document.querySelector('.otra-consulta');
+  
+    if (resultados.length > 0) {
+      form.style.display = 'none';
+      btnOtraConsulta.style.display = 'block';
+      // No hace falta usar renderResultados si ya están en el DOM
+    }
+  });
+btnOtraConsulta.addEventListener('click', function () {
+    form.style.display = 'block';
+    btnOtraConsulta.style.display = 'none';
+  });
 
 
 
@@ -229,7 +244,7 @@ function toggleMenu() {
 //Britanica Salud o Britanica* ==#E4002B 
 
 const resultados = document.querySelectorAll('.cobertura');
-console.log(resultados)
+
 
 resultados.forEach(valor => {
     const compañia = valor.children[0].textContent;

@@ -167,13 +167,13 @@ select{
 }
 
 /*btn submit*/
-input[type="submit"], .mas-info-btn{
+input[type="submit"], .mas-info-btn, .otra-consulta{
     border:1px solid #244274;
     background-color:#244274;
     color:#fff;
     width: 100%;
     padding: 12px 24px;
-    border-radius: 50px;
+    border-radius: 15px 15px 15px 15px;
     margin-top: auto;
     cursor: pointer;
 }
@@ -456,5 +456,12 @@ nav {
     color: #333;
     font-size: 14px;
     line-height: 1.5;
+  }
+  
+
+  /*btn otra consulta*/
+  .otra-consulta{
+    display: none;
+    max-width: 300px;
   }
   

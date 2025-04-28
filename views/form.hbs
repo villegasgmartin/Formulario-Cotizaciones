@@ -187,13 +187,27 @@
 
                     <p>{{{descripcion}}}</p>
                     <p class="costo">{{valor}}</p>
+                       <!-- Checkbox para comparación -->
+                    <div>
+                        <input type="checkbox" class="comparar-checkbox" value="{{NombrePlan}}" onchange="handleCompareCheckbox(this)">
+                        <label>Comparar</label>
+                    </div>
 
                 </div>
                     
-                    <button class="mas-info-btn" onclick="window.location.href= {{ws}}">Más Info</button>    
+                    <button class="mas-info-btn" onclick="window.location.href= {{ws}}">Más Info</button>   
+                
             </div>
         {{/each}}
+      
     </div>
+          <!-- Botón para comparar -->
+                  <div style="text-align: center; margin-top: 20px;">
+                      <button id="compararBtn" disabled>Comparar</button>
+                  </div>
+
+                  <!-- Contenedor para mostrar la tabla de comparación -->
+                  <div id="comparativa"></div> 
 {{/if}}
     </div>
 

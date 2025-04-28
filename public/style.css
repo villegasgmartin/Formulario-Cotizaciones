@@ -465,3 +465,83 @@ nav {
     max-width: 300px;
   }
   
+
+  /*comparativa*/
+ /* Estilos para los checkbox de comparar */
+.comparar-checkbox {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+  
+  /* Botón de comparar */
+  #compararBtn {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #compararBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  #compararBtn:hover:not(:disabled) {
+    background-color: #0056b3;
+  }
+  
+  /* Tabla comparativa */
+  table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+   padding: 15px;
+    background-color: #ffffff;
+    border-radius: 20px;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd; /* Bordes en cada celda */
+    padding: 12px;
+    text-align: center; /* Centrar el texto */
+    font-size: 14px;
+  }
+  
+  /* Títulos de columnas */
+  table th {
+    background-color: #385B96; /* Fondo azul */
+    color: white; /* Letras blancas */
+    font-weight: bold;
+  }
+  
+  /* Títulos de filas (primera columna de cada fila) */
+  table td:first-child {
+    background-color: #385B96; /* Fondo azul */
+    color: white; /* Letras blancas */
+    font-weight: bold;
+  }
+  
+  /* Alternar color de filas (si querés mantenerlo simple, se puede sacar) */
+  table tr:nth-child(even) {
+    background-color: #ffffff; /* Fondo blanco en filas pares también */
+  }
+  
+  /* Opcional: Hacer la tabla responsive */
+  @media (max-width: 768px) {
+    table {
+      font-size: 12px;
+      min-width: 400px;
+      overflow-y: scroll;
+    }
+  }
+  

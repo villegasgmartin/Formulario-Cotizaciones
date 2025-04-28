@@ -1,4 +1,195 @@
 
+//comparaciones
+const comparaciones = [
+    {
+      "compañía": "Avalian",
+      "plan": "Cerca",
+      "cartilla": "Seleccionada por proximidad",
+      "consultas_médicas": "Con copago, sin tope",
+      "internacion": "Habitación compartida",
+      "medicamentos": "40% de descuento",
+      "ortodoncia": "No especificado",
+      "asistencia_viajero": "No especificado",
+      "telemedicina": "e-Doc Avalian",
+      "odontologia": "Con copago, sin tope",
+      "psicoterapia": "30 sesiones con copago",
+      "fisioterapia": "25 sesiones con copago",
+      "fonoaudiologia": "25 sesiones con copago",
+      "cirugia_refractiva": "No especificado",
+      "optica": "100% en marcos y cristales",
+      "plan_materno_infantil": "100% de cobertura"
+    },
+    {
+      "compañía": "Avalian",
+      "plan": "Integral",
+      "cartilla": "Amplia, alcance nacional",
+      "consultas_médicas": "Con copago, sin tope",
+      "internacion": "Habitación individual",
+      "medicamentos": "40% de descuento",
+      "ortodoncia": "De 5 a 30 años",
+      "asistencia_viajero": "Argentina y países limítrofes",
+      "telemedicina": "e-Doc Avalian",
+      "odontologia": "Con copago, sin tope",
+      "psicoterapia": "30 sesiones con copago",
+      "fisioterapia": "40 sesiones con copago",
+      "fonoaudiologia": "30 sesiones con copago",
+      "cirugia_refractiva": "Subsidio según plan y normas",
+      "optica": "100% en marcos y cristales",
+      "plan_materno_infantil": "100% de cobertura"
+    },
+    {
+      "compañía": "Avalian",
+      "plan": "Superior",
+      "cartilla": "Amplia, prestadores de primera calidad",
+      "consultas_médicas": "Sin copago, sin tope",
+      "internacion": "Habitación individual",
+      "medicamentos": "40% de descuento",
+      "ortodoncia": "De 5 a 35 años",
+      "asistencia_viajero": "Internacional",
+      "telemedicina": "e-Doc Avalian",
+      "odontologia": "Sin copago, sin tope",
+      "psicoterapia": "30 sesiones con copago",
+      "fisioterapia": "45 sesiones (30 sin copago, 15 con copago)",
+      "fonoaudiologia": "35 sesiones (30 sin copago, 5 con copago)",
+      "cirugia_refractiva": "Subsidio según plan y normas",
+      "optica": "100% en marcos y cristales",
+      "plan_materno_infantil": "100% de cobertura"
+    },
+    {
+      "compañía": "Prevención Salud",
+      "plan": "A1",
+      "cartilla": "Cerrada",
+      "consultas_médicas": "Sin tope, sin límite",
+      "internacion": "Habitación compartida",
+      "medicamentos": "40% de descuento",
+      "ortodoncia": "De 5 a 18 años (por reintegro)",
+      "asistencia_viajero": "Nacional",
+      "telemedicina": "Consultorio Médico Virtual",
+      "odontologia": "Sin tope, sin límite",
+      "psicoterapia": "Hasta 30 sesiones con copago",
+      "fisioterapia": "25 sesiones",
+      "fonoaudiologia": "25 sesiones",
+      "cirugia_refractiva": "No especificado",
+      "optica": "1 par de anteojos con cristales monofocales anual (por reintegro con tope)",
+      "plan_materno_infantil": "100% de cobertura"
+    },
+    {
+      "compañía": "Prevención Salud",
+      "plan": "A2",
+      "cartilla": "Abierta con reintegros",
+      "consultas_médicas": "Sin tope, sin límite",
+      "internacion": "Habitación individual",
+      "medicamentos": "40% de descuento",
+      "ortodoncia": "De 5 a 35 años (por reintegro)",
+      "asistencia_viajero": "Nacional y países limítrofes",
+      "telemedicina": "Consultorio Médico Virtual",
+      "odontologia": "Sin tope, sin límite",
+      "psicoterapia": "Hasta 30 sesiones con copago",
+      "fisioterapia": "30 sesiones",
+      "fonoaudiologia": "30 sesiones",
+      "cirugia_refractiva": "50% por única vez (con antigüedad mínima de 18 meses)",
+      "optica": "Por reintegro",
+      "plan_materno_infantil": "100% de cobertura"
+    },
+    {
+      "compañía": "DOCTORED",
+      "plan": "PLAN500PLUS",
+      "cartilla": "Información no disponible",
+      "consultas_médicas": "Información no disponible",
+      "internacion": "Información no disponible",
+      "medicamentos": "Información no disponible",
+      "ortodoncia": "Información no disponible",
+      "asistencia_viajero": "Información no disponible",
+      "telemedicina": "Información no disponible",
+      "odontologia": "Información no disponible",
+      "psicoterapia": "Información no disponible",
+      "fisioterapia": "Información no disponible",
+      "fonoaudiologia": "Información no disponible",
+      "cirugia_refractiva": "Información no disponible",
+      "optica": "Información no disponible",
+      "plan_materno_infantil": "Información no disponible"
+    },
+    {
+      "compañía": "DOCTORED",
+      "plan": "PLAN1000",
+      "cartilla": "Información no disponible",
+      "consultas_médicas": "Información no disponible",
+      "internacion": "Información no disponible",
+      "medicamentos": "Información no disponible",
+      "ortodoncia": "Información no disponible",
+      "asistencia_viajero": "Información no disponible",
+      "telemedicina": "Información no disponible",
+      "odontologia": "Información no disponible",
+      "psicoterapia": "Información no disponible",
+      "fisioterapia": "Información no disponible",
+      "fonoaudiologia": "Información no disponible",
+      "cirugia_refractiva": "Información no disponible",
+      "optica": "Información no disponible",
+      "plan_materno_infantil": "Información no disponible"
+    }
+  ]
+
+
+let planesSeleccionados = [];
+
+function handleCompareCheckbox(checkbox) {
+    const plan = checkbox.value;
+    if (checkbox.checked) {
+        if (planesSeleccionados.length >= 4) {
+            alert("Solo puedes comparar hasta 4 planes.");
+            checkbox.checked = false;
+        } else {
+            planesSeleccionados.push(plan);
+        }
+    } else {
+        planesSeleccionados = planesSeleccionados.filter(p => p !== plan);
+    }
+    document.getElementById('compararBtn').disabled = planesSeleccionados.length === 1;
+}
+
+
+const mostrarComparativa = ()=> {
+    console.log('entro')
+    // Aquí usarías el JSON que te pasé arriba
+    const planes = comparaciones;
+    console.log(planes)
+    const planesFiltrados = planes.filter(p => planesSeleccionados.includes(p.plan));
+    console.log(planesSeleccionados, planesFiltrados, "planes")
+
+    if (planesFiltrados.length === 0) return;
+
+    let html = "<table border='1' cellpadding='5' cellspacing='0'><tr><th>Atributo</th>";
+
+    planesFiltrados.forEach(p => {
+        html += `<th>${p.plan} (${p.compañía})</th>`;
+    });
+
+    html += "</tr>";
+
+    const atributos = [
+        "cartilla", "consultas_médicas", "internacion", "medicamentos",
+        "ortodoncia", "asistencia_viajero", "telemedicina", "odontologia",
+        "psicoterapia", "fisioterapia", "fonoaudiologia", "cirugia_refractiva",
+        "optica", "plan_materno_infantil"
+    ];
+
+    atributos.forEach(attr => {
+        html += `<tr><td><b>${attr.replace(/_/g, ' ').toUpperCase()}</b></td>`;
+        planesFiltrados.forEach(p => {
+            html += `<td>${p[attr]}</td>`;
+        });
+        html += "</tr>";
+    });
+
+    html += "</table>";
+
+    document.getElementById("comparativa").innerHTML = html;
+}
+
+const compararbtn = document.querySelector("#compararBtn");
+
+compararbtn.addEventListener('click',mostrarComparativa )
+
 
 //seleccion de variables
 

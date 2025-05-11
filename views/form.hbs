@@ -146,7 +146,7 @@
             <input type="number" id="tipo-monutributo" disabled>
         </div>
 
-        <input type="submit" value="Buscar y Comparar Planes">
+        <input type="submit" value="Buscar y Comparar Planes" class="submit-btn">
 
     </form>
     <button class="otra-consulta">Otra consulta</button>
@@ -188,7 +188,7 @@
                     <p>{{{descripcion}}}</p>
                     <p class="costo">{{valor}}</p>
                        <!-- Checkbox para comparación -->
-                    <div>
+                    <div class="check-div"> 
                         <input type="checkbox" class="comparar-checkbox" value="{{NombrePlan}}" onchange="handleCompareCheckbox(this)">
                         <label>Comparar</label>
                     </div>
@@ -201,13 +201,18 @@
         {{/each}}
       
     </div>
+     {{#if VerMas}}
           <!-- Botón para comparar -->
-                  <div style="text-align: center; margin-top: 20px;">
-                      <button id="compararBtn" disabled>Comparar</button>
-                  </div>
+          <div class="comparativa-contenedor">
+        <div style="text-align: center; margin-top: 20px;">
+                            <button id="compararBtn" disabled>Comparar</button>
+                        </div>
 
-                  <!-- Contenedor para mostrar la tabla de comparación -->
-                  <div id="comparativa"></div> 
+                        <!-- Contenedor para mostrar la tabla de comparación -->
+                        <div id="comparativa"></div> 
+          </div>
+                
+      {{/if}}
 {{/if}}
     </div>
 

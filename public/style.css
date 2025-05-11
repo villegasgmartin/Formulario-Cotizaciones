@@ -545,3 +545,48 @@ nav {
     }
   }
   
+  div.check-div{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.comparar-checkbox{
+    height: 50px;
+    width: 15px;
+    margin-top: 0;
+}
+
+div.check-div label{
+    line-height: 50px;
+    color:green;
+}
+
+@media only screen and (max-width:768px){
+
+        table td{
+            min-width: 200px;
+        }
+        table{
+            width: 100%;
+            overflow: scroll;
+        }
+        #planesDiv{
+            max-width: 100vw;
+            overflow: hidden;
+        }
+        #comparativa{
+            max-width: 100vw;
+            overflow-x: scroll;
+            padding: 0 20px;
+
+        }
+
+}
+.comparativa-contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

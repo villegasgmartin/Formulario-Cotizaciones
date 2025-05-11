@@ -92,40 +92,40 @@ const comparaciones = [
       "plan_materno_infantil": "100% de cobertura"
     },
     {
-      "compañía": "DOCTORED",
-      "plan": "PLAN500PLUS",
-      "cartilla": "Información no disponible",
-      "consultas_médicas": "Información no disponible",
-      "internacion": "Información no disponible",
-      "medicamentos": "Información no disponible",
-      "ortodoncia": "Información no disponible",
-      "asistencia_viajero": "Información no disponible",
-      "telemedicina": "Información no disponible",
-      "odontologia": "Información no disponible",
-      "psicoterapia": "Información no disponible",
-      "fisioterapia": "Información no disponible",
-      "fonoaudiologia": "Información no disponible",
-      "cirugia_refractiva": "Información no disponible",
-      "optica": "Información no disponible",
-      "plan_materno_infantil": "Información no disponible"
+        "compañía": "DOCTORED",
+        "plan": "PLAN500PLUS",
+        "cartilla": "En prestadores habilitados en la cartilla de doctored 500",
+        "consultas_médicas": "Consultas en consultorio: ct-cl-sc, consultas en guardia: st-sl-sc, emergencias / urgencias médicas: st-sl-sc, visitas a domicilio: ct-cl-cc",
+        "internacion": "Alcoholismo y adicciones: Cobertura pmo, clinica: 100%, quirurgica: 100%, neo/uti/uco: 100%, tipo de habitacion: Compartida, internacion domiciliaria: Segun auditoria medica",
+        "medicamentos": "Ambulatoria: 40%, internacion: 100%, cronica: 70%, oncologico/hiv/diabetes: 100%",
+        "ortodoncia": "Sin cobertura",
+        "asistencia_viajero": "Sin cobertura",
+        "telemedicina": "St-sl-sc",
+        "odontologia": "Urgencias: 100%, odontologia general: 100%",
+        "psicoterapia": "Hasta 30 sesiones cc",
+        "fisioterapia": "Hasta 25 sesiones cc",
+        "fonoaudiologia": "Hasta 25 sesiones cc",
+        "cirugia_refractiva": "Sin cobertura",
+        "optica": "Anteojos: Hasta los 15 años, lentes de contacto: Sin cobertura",
+        "plan_materno_infantil": "Parto normal: 100%, cesarea: 100%, parto personalizado: Sin cobertura, pmi: medicamentos y vacunas: Segun norma vigente, pmi: leche maternidad: Según norma vigente, vacunas: Por calendario: 100%, especiales: Sin cobertura"
     },
     {
-      "compañía": "DOCTORED",
-      "plan": "PLAN1000",
-      "cartilla": "Información no disponible",
-      "consultas_médicas": "Información no disponible",
-      "internacion": "Información no disponible",
-      "medicamentos": "Información no disponible",
-      "ortodoncia": "Información no disponible",
-      "asistencia_viajero": "Información no disponible",
-      "telemedicina": "Información no disponible",
-      "odontologia": "Información no disponible",
-      "psicoterapia": "Información no disponible",
-      "fisioterapia": "Información no disponible",
-      "fonoaudiologia": "Información no disponible",
-      "cirugia_refractiva": "Información no disponible",
-      "optica": "Información no disponible",
-      "plan_materno_infantil": "Información no disponible"
+        "compañía": "DOCTORED",
+        "plan": "PLAN1000",
+        "cartilla": "Información no disponible",
+        "consultas_médicas": "Atención médica sin coseguros ni copagos",
+        "internacion": "Cobertura en internaciones clínicas y quirúrgicas",
+        "medicamentos": "Descuentos en farmacias del 40%, 70% y 100%",
+        "ortodoncia": "40% de descuento en placas de descanso en nuestro centro odontológico propio",
+        "asistencia_viajero": "Información no disponible",
+        "telemedicina": "Información no disponible",
+        "odontologia": "Centros odontológicos propios donde no debe abonar coseguro",
+        "psicoterapia": "30 sesiones de psicología/psiquiatría",
+        "fisioterapia": "25 sesiones de kinesiología",
+        "fonoaudiologia": "25 sesiones de fonoaudiología",
+        "cirugia_refractiva": "Información no disponible",
+        "optica": "Cobertura de lentes hasta los 15 años",
+        "plan_materno_infantil": "Plan materno infantil"
     }
   ]
 
@@ -188,7 +188,10 @@ const mostrarComparativa = ()=> {
 
 const compararbtn = document.querySelector("#compararBtn");
 
-compararbtn.addEventListener('click',mostrarComparativa )
+if(compararbtn){
+    compararbtn.addEventListener('click',mostrarComparativa )
+}
+
 
 
 //seleccion de variables
@@ -329,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const form = document.querySelector('.form-cotiza');
 const btnOtraConsulta = document.querySelector('.otra-consulta');
+const btnSubmit = document.querySelector('.submit-btn')
 
 
 form.addEventListener('submit', (e) => {
@@ -337,6 +341,9 @@ form.addEventListener('submit', (e) => {
         alert("Por favor seleccione Localidad válida.");
         e.preventDefault(); // Evita que el formulario se envíe
     }
+    console.log(btnSubmit)
+    btnSubmit.value = 'Consultado ....'
+    
    
 });
 
@@ -354,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
 btnOtraConsulta.addEventListener('click', function () {
     form.style.display = 'block';
     btnOtraConsulta.style.display = 'none';
+    btnSubmit.value = 'Buscar y Comparar Planes'
   });
 
 

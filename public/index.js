@@ -454,41 +454,41 @@ resultados.forEach(valor => {
     switch (compañia) { 
         case 'Avalian':
             valor.children[0].style.color = '#00986B';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678611/avalian_logo-color__1_-removebg-preview_b8ws4i.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956709/planb/avalian-removebg-preview_1_v20cua.png'
 
             break;
         case 'Omint':
             valor.children[0].style.color = '#002583';
-            valor.children[0].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678476/omint_vxuug2.png'
+            valor.children[0].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956284/planb/omit_xp8f7t.png'
 
             break;
         case 'Prevencion Salud':
             valor.children[0].style.color = '#E10173';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/prevencion_yweoqc.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956387/planb/prevencion-cobertura-medica_mbpeyj.png'
 
         break;
         case 'Alianza Medica':
             valor.children[0].style.color = '#007EA7';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678476/alianza_yh13hv.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956752/planb/LogoAlianzaRetina-removebg-preview_yscc7z.png'
 
         break;
         case 'Integral Salud':
             valor.children[0].style.color = '#25907E';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/integral_q6crrw.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956252/planb/Integral_Salud_um5gm6.png'
 
         break;
         case 'Britanica Salud':
             valor.children[0].style.color = '#E4002B';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/britanica_logo_kjpsnf.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956627/planb/Britanica_Salud-removebg-preview_zrcjua.png'
         break;
         case 'Britanica':
             valor.children[0].style.color = '#E4002B';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1733678477/britanica_logo_kjpsnf.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956627/planb/Britanica_Salud-removebg-preview_zrcjua.png'
 
         break;
         case 'DOCTORED':
             valor.children[0].style.color = '#383D8A';
-            valor.children[1].src = 'https://res.cloudinary.com/dj3akdhb9/image/upload/v1737159086/doctored-medicina-privada-removebg-preview_1_ol7ikw.png'
+            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956522/planb/DOCTORED-removebg-preview_1_rkcvbt.png'
         break;
         default:
             // Por defecto, no se cambia el color

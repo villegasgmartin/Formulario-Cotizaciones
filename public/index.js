@@ -454,41 +454,41 @@ resultados.forEach(valor => {
     switch (compañia) { 
         case 'Avalian':
             valor.children[0].style.color = '#00986B';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956709/planb/avalian-removebg-preview_1_v20cua.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/avalian-removebg-preview_1_v20cua.png'
 
             break;
         case 'Omint':
             valor.children[0].style.color = '#002583';
-            valor.children[0].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956284/planb/omit_xp8f7t.png'
+            valor.children[0].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/omit_xp8f7t-scaled.png'
 
             break;
         case 'Prevencion Salud':
             valor.children[0].style.color = '#E10173';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956387/planb/prevencion-cobertura-medica_mbpeyj.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/prevencion-cobertura-medica_mbpeyj.png'
 
         break;
         case 'Alianza Medica':
             valor.children[0].style.color = '#007EA7';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956752/planb/LogoAlianzaRetina-removebg-preview_yscc7z.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/LogoAlianzaRetina-removebg-preview_yscc7z.png'
 
         break;
         case 'Integral Salud':
             valor.children[0].style.color = '#25907E';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956252/planb/Integral_Salud_um5gm6.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/Integral_Salud_um5gm6.png'
 
         break;
         case 'Britanica Salud':
             valor.children[0].style.color = '#E4002B';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956627/planb/Britanica_Salud-removebg-preview_zrcjua.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/Britanica_Salud-removebg-preview_zrcjua.png'
         break;
         case 'Britanica':
             valor.children[0].style.color = '#E4002B';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956627/planb/Britanica_Salud-removebg-preview_zrcjua.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/Britanica_Salud-removebg-preview_zrcjua.png'
 
         break;
         case 'DOCTORED':
             valor.children[0].style.color = '#383D8A';
-            valor.children[1].src = 'https://res.cloudinary.com/dhmrxjxzx/image/upload/v1753956522/planb/DOCTORED-removebg-preview_1_rkcvbt.png'
+            valor.children[1].src = 'http://tuplanb.com.ar/wp-content/uploads/2025/09/DOCTORED-removebg-preview_1_rkcvbt.png'
         break;
         default:
             // Por defecto, no se cambia el color

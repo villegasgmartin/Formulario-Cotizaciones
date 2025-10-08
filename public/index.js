@@ -351,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultados = document.querySelectorAll('.cobertura');
     const form = document.querySelector('.form-cotiza');
     const btnOtraConsulta = document.querySelector('.otra-consulta');
+   
   
     if (resultados.length > 0) {
       form.style.display = 'none';
@@ -371,8 +372,10 @@ const masInfoBtns = document.querySelectorAll('.mas-info-btn');
 
 // Iterar sobre cada botón y agregar un evento clic
 masInfoBtns.forEach((btn) => {
-    console.log('entro al masinfo')
+   
+
     btn.addEventListener('click', (event) => {
+         console.log('entro al masinfo, mandar ws')
         // Obtener el nombre de la compañía y el nombre del plan
         const compania = event.target.parentNode.querySelector('.nombre-comp').textContent;
         const plan = event.target.parentNode.querySelector('.plan').textContent;

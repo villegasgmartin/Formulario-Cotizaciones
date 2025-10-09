@@ -126,6 +126,24 @@ const comparaciones = [
         "cirugia_refractiva": "Información no disponible",
         "optica": "Cobertura de lentes hasta los 15 años",
         "plan_materno_infantil": "Plan materno infantil"
+    },
+     {
+        "compañía": "AMA SALUD",
+        "plan": "Plan Total",
+        "cartilla": "Información no disponible",
+        "consultas_médicas": "Atención médica sin coseguros ni copagos",
+        "internacion": "Cobertura en internaciones clínicas y quirúrgicas",
+        "medicamentos": "Descuentos en farmacias del 50%",
+        "ortodoncia": "Cobertura al 30%  por afiliado",
+        "asistencia_viajero": "Información no disponible",
+        "telemedicina": "Información no disponible",
+        "odontologia": "Centros odontológicos propios donde no debe abonar coseguro",
+        "psicoterapia": "30 sesiones de psicología/psiquiatría",
+        "fisioterapia": "25 sesiones de kinesiología",
+        "fonoaudiologia": "25 sesiones de fonoaudiología",
+        "cirugia_refractiva": "Información no disponible",
+        "optica": "Reintegro de hasta $50.000 en gastos de óptica con gestión automática, presentación de comprobante y receta médica",
+        "plan_materno_infantil": "Plan materno infantil"
     }
   ]
 
@@ -189,7 +207,20 @@ const mostrarComparativa = ()=> {
 const compararbtn = document.querySelector("#compararBtn");
 
 if(compararbtn){
-    compararbtn.addEventListener('click',mostrarComparativa )
+    compararbtn.addEventListener('click',()=>{
+        mostrarComparativa() 
+        setTimeout(() => {
+      const comparativaSection = document.getElementById('comparativa-container');
+      if (comparativaSection) {
+        comparativaSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 200); 
+    
+    })
+
 }
 
 
@@ -351,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultados = document.querySelectorAll('.cobertura');
     const form = document.querySelector('.form-cotiza');
     const btnOtraConsulta = document.querySelector('.otra-consulta');
+   
   
     if (resultados.length > 0) {
       form.style.display = 'none';
@@ -371,52 +403,44 @@ const masInfoBtns = document.querySelectorAll('.mas-info-btn');
 
 // Iterar sobre cada botón y agregar un evento clic
 masInfoBtns.forEach((btn) => {
-    console.log('entro al masinfo')
-    btn.addEventListener('click', (event) => {
-        // Obtener el nombre de la compañía y el nombre del plan
-        const compania = event.target.parentNode.querySelector('.nombre-comp').textContent;
-        const plan = event.target.parentNode.querySelector('.plan').textContent;
-        const edad = event.target.parentNode.querySelector('.edad').textContent;
-        const edadPareja = event.target.parentNode.querySelector('.edad-pareja')?.textContent ?? '';
-        const monotributo = event.target.parentNode.querySelector('.monotributo')?.textContent ?? 'No monotributo';
-        const sueldo = event.target.parentNode.querySelector('.sueldo')?.textContent ?? '';
-        const tipo = event.target.parentNode.querySelector('.tipo')?.textContent ?? '';
-        const tributo = event.target.parentNode.querySelector('.tributo')?.textContent ?? '';
-        const localidad = event.target.parentNode.querySelector('.localidad')?.textContent ?? '';
-        const hijos = event.target.parentNode.querySelector('.hijos')?.textContent ?? '';
+   
 
-        console.log(tipo, "tributo:", tributo)
+   btn.addEventListener('click', (event) => {
+  const card = event.target.closest('.plan-card');
+  if (!card) return; // seguridad
 
+  const compania = card.querySelector('.nompre-compania')?.textContent ?? '';
+  const plan = card.querySelector('.plan-nombre')?.textContent ?? '';
+  const edad = card.querySelector('.edad')?.textContent ?? '';
+  const edadPareja = card.querySelector('.edad-pareja')?.textContent ?? '';
+  const monotributo = card.querySelector('.monotributo')?.textContent ?? 'No monotributo';
+  const sueldo = card.querySelector('.sueldo')?.textContent ?? '';
+  const tipo = card.querySelector('.tipo')?.textContent ?? '';
+  const tributo = card.querySelector('.tributo')?.textContent ?? '';
+  const localidad = card.querySelector('.localidad')?.textContent ?? '';
+  const hijos = card.querySelector('.hijos')?.textContent ?? '';
 
-        if(tipo == 'Individuo'  && tributo != "sueldo" ){
-            // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  console.log(tipo, "tributo:", tributo);
 
-        }
-        if(tipo == 'Individuo' && tributo =="sueldo"  ){
-                mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relacion de dependecia, Monutributo: ${monotributo},  Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  let mensajePersonalizado = '';
 
-           
-           
-            // Construir el mensaje personalizado
-        }
-        if(tipo != 'Individuo' && tributo !="sueldo" ){
-            // Construir el mensaje personalizado
-            mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()},total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
-        }
-        
-        console.log(compania, plan)
+  if (tipo === 'Individuo' && tributo !== "sueldo") {
+    mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  } 
+  else if (tipo === 'Individuo' && tributo === "sueldo") {
+    mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relación de dependencia, Monotributo: ${monotributo}, Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  } 
+  else {
+    mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  }
 
-      
-       
+  const telefono = '+5493413151350';
+  const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
+  console.log(urlWhatsapp);
 
-        // Construir la URL de WhatsApp con el mensaje personalizado
-        const telefono = '+5493413151350'; // Número de teléfono predeterminado
-        const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
-console.log(urlWhatsapp);
-        // Abrir la URL de WhatsApp en una nueva ventana
-        window.open(urlWhatsapp, '_blank');
-    });
+  window.open(urlWhatsapp, '_blank');
+});
+
 });
 
 

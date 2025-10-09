@@ -56,6 +56,9 @@ const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
             case 'Prevencion Salud':
                     tipo = `pareja+${hijosTotales}Hijo`;
                 break;
+            case 'AMA SALUD':
+                    tipo = `pareja+${hijosTotales}Hijo`;
+                break;
             case 'DOCTORED':
                 tipo = `pareja+${hijosTotales}Hijo`;
                 break;
@@ -80,6 +83,9 @@ const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
                 tipo = `Individuo+${hijosTotales}Hijo`;
             break;
         case 'Prevencion Salud':
+                tipo = `Individuo+${hijosTotales}Hijo`;
+            break;
+        case 'AMA SALUD':
                 tipo = `Individuo+${hijosTotales}Hijo`;
             break;
         case 'DOCTORED':
@@ -178,6 +184,9 @@ function aportesSueldoBruto (SueldoBruto, plan){
             descuentoSueldo = SueldoBruto * 0.0709
             break;
         case 'Prevencion Salud':
+            descuentoSueldo = SueldoBruto * 0.065
+            break;
+        case 'AMA SALUD':
             descuentoSueldo = SueldoBruto * 0.065
             break;
        
@@ -309,6 +318,40 @@ console.log(tipo)
 
         params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
 
+        const valorIncial = await pool.query(queryGeneral, params)
+        price = parseFloat(valorIncial[0][0].Cotizacion);
+       
+        if(tipoMonutributo){
+            descuento = aportesMonotributista(tipoMonutributo)
+        }else{
+            descuento = 0
+        }
+
+        if(sueldoBruto){
+            descuentoSueldo = aportesSueldoBruto(sueldoBruto, plan)
+        }else{
+            descuentoSueldo = 0
+        }
+
+        let costo = price - descuento - descuentoSueldo
+        return "$" + Math.round(costo)
+        
+    }
+
+    // plan AMA SALUD ***********
+     if(plan=='AMA SALUD'){
+
+        
+     
+        if (tributo ==='monotributo' || tributo === 'sueldo'){
+            tributo = 'Sueldo'
+         }
+
+
+        const maximo = Math.max(edad, edadPareja);
+
+        params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
+         console.log()
         const valorIncial = await pool.query(queryGeneral, params)
         price = parseFloat(valorIncial[0][0].Cotizacion);
        

@@ -100,21 +100,21 @@ const coberturasDisponibles = async (req, res) => {
         case 'ROSARIO':
             if (totalHijos == 0) {
                 if(edad >= 45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud','DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud','DOCTORED', 'AMA SALUD'];
 
                 }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
                 }
             } else {
                 if(edad>=45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
 
                 }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED'];
+                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
+                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
 
                 }
             }
@@ -122,9 +122,9 @@ const coberturasDisponibles = async (req, res) => {
         case 'ENTRE RIOS':
         case 'BUENOS AIRES':
         case 'SANTA FE':
-            coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED']
+            coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
     
-            coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED']
+            coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
                 break;
         case 'CORDOBA':
         case 'TIERRA DEL FUEGO':
@@ -133,9 +133,9 @@ const coberturasDisponibles = async (req, res) => {
         case 'RIO NEGRO':
         case 'SAN LUIS':
         case 'OTRA':
-            coberturasExternasSueldo = ['Prevencion Salud', 'DOCTORED']
+            coberturasExternasSueldo = ['Prevencion Salud', 'DOCTORED','AMA SALUD']
     
-            coberturasExternasParticular = [ 'Prevencion Salud', 'DOCTORED']
+            coberturasExternasParticular = [ 'Prevencion Salud', 'DOCTORED','AMA SALUD']
                 break;    
 
     

@@ -577,7 +577,6 @@ nav {
   /* Botón de comparar */
   #compararBtn {
     margin: 20px auto;
-    display: block;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -586,6 +585,10 @@ nav {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    position: fixed;
+    right: 20px;
+    z-index: 10000;
+    bottom: 40px;
   }
   
   #compararBtn:disabled {
@@ -687,6 +690,7 @@ div.check-div label{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 80px;
 }
 
 

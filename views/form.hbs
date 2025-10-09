@@ -162,10 +162,19 @@
   {{#each CoberturasPropuestas}}
     <div class="plan-card cobertura" style="border-color: {{descripcion.color}}">
       <div class="plan-header" style="background-color: {{descripcion.color}}">
-        <h2>{{plan}}</h2>
+        <h2 class="nompre-compania">{{plan}}</h2>
         <p class="plan-nombre">{{NombrePlan}}</p>
           <img class="foto-comp" src="" alt="">
       </div>
+         {{!-- datos ocultos --}}
+                    <p style="display: none;" class="edad">{{edad}}</p>
+                    <p style="display: none;"  class="tipo">{{tipo}}</p>
+                    <p style="display: none;"  class="sueldo">{{sueldo}}</p>   
+                    <p style="display: none;"  class="monutributo">{{monutributo}}</p>
+                    <p style="display: none;"  class="localidad">{{localidad}}</p>   
+                    <p style="display: none;"  class="edad-pareja">{{edadPareja}}</p>
+                    <p style="display: none;"  class="tributo">{{tributo}}</p>
+                    <p style="display: none;"  class="hijos">{{hijos}}</p>
 
       <div class="plan-body">
         <!-- Beneficios -->
@@ -201,7 +210,7 @@
                         <label>Comparar</label>
                     </div>
                   
-        <button class="mas-info-btn" style="background-color: {{descripcion.color}}" onclick="window.location.href= {{ws}}">Más Info</button>
+        <button class="mas-info-btn" style="background-color: {{descripcion.color}}">Más Info</button>
       </div>
         
    
@@ -211,7 +220,7 @@
 </div>
    {{#if VerMas}}
           <!-- Botón para comparar -->
-          <div class="comparativa-contenedor">
+          <div class="comparativa-contenedor" id="comparativa-container">
         <div style="text-align: center; margin-top: 20px;">
                             <button id="compararBtn" disabled>Comparar</button>
                         </div>

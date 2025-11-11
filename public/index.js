@@ -424,14 +424,17 @@ masInfoBtns.forEach((btn) => {
 
   let mensajePersonalizado = '';
 
-  if (tipo === 'Individuo' && tributo !== "sueldo") {
+  if (tipo == 'Individuo' && tributo !== "sueldo") {
     mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
   } 
-  else if (tipo === 'Individuo' && tributo === "sueldo") {
+  if (tipo == 'Individuo' && tributo == "sueldo") {
     mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: En relación de dependencia, Monotributo: ${monotributo}, Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
   } 
-  else {
+  if(tipo != 'Individuo' && tributo !="sueldo" ) {
     mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
+  }
+  if(tipo != 'Individuo' && tributo =="sueldo" ) {
+    mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo},Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
   }
 
   const telefono = '+5493413151350';

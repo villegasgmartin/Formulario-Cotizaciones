@@ -437,7 +437,7 @@ masInfoBtns.forEach((btn) => {
     mensajePersonalizado = `Buenas tardes, quisiera averiguar sobre la cobertura ${compania}, el plan ${plan}, Edad: ${edad}, Tipo: ${tributo},Sueldo: ${sueldo}, Localidad: ${localidad.toLowerCase()}, total de hijos: ${hijos}, Edad pareja: ${edadPareja}`;
   }
 
-  const telefono = '+5493413151350';
+  const telefono = '+5493413675880';
   const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
   console.log(urlWhatsapp);
 

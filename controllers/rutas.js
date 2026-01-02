@@ -96,53 +96,55 @@ const coberturasDisponibles = async (req, res) => {
 
   
     //coberturas para otras localidad por situacion laboral
-    switch (localidad[0]) {
-        case 'ROSARIO':
-            if (totalHijos == 0) {
-                if(edad >= 45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud','DOCTORED', 'AMA SALUD'];
+    // switch (localidad[0]) {
+    //     case 'ROSARIO':
+    //         if (totalHijos == 0) {
+    //             if(edad >= 45){
+    //                 coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+    //                 coberturasExternasParticular = ['Avalian', 'Prevencion Salud','DOCTORED', 'AMA SALUD'];
 
-                }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
-                }
-            } else {
-                if(edad>=45){
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+    //             }else{
+    //                 coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+    //                 coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
+    //             }
+    //         } else {
+    //             if(edad>=45){
+    //                 coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
+    //                 coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD'];
 
-                }else{
-                    coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
-                    coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
+    //             }else{
+    //                 coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
+    //                 coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED','AMA SALUD'];
 
-                }
-            }
-            break;
-        case 'ENTRE RIOS':
-        case 'BUENOS AIRES':
-        case 'SANTA FE':
-            coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
+    //             }
+    //         }
+    //         break;
+    //     case 'ENTRE RIOS':
+    //     case 'BUENOS AIRES':
+    //     case 'SANTA FE':
+    //         coberturasExternasSueldo = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
     
-            coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
-                break;
-        case 'CORDOBA':
-        case 'TIERRA DEL FUEGO':
-        case 'SANTA CRUZ':
-        case 'CHUBUT':
-        case 'RIO NEGRO':
-        case 'SAN LUIS':
-        case 'OTRA':
-            coberturasExternasSueldo = ['Prevencion Salud', 'DOCTORED','AMA SALUD']
+    //         coberturasExternasParticular = ['Avalian', 'Prevencion Salud', 'DOCTORED', 'AMA SALUD']
+    //             break;
+    //     case 'CORDOBA':
+    //     case 'TIERRA DEL FUEGO':
+    //     case 'SANTA CRUZ':
+    //     case 'CHUBUT':
+    //     case 'RIO NEGRO':
+    //     case 'SAN LUIS':
+    //     case 'OTRA':
+    //         coberturasExternasSueldo = ['Prevencion Salud', 'DOCTORED','AMA SALUD']
     
-            coberturasExternasParticular = [ 'Prevencion Salud', 'DOCTORED','AMA SALUD']
-                break;    
+    //         coberturasExternasParticular = [ 'Prevencion Salud', 'DOCTORED','AMA SALUD']
+    //             break;    
 
     
-        default:
-            break;
-    }
+    //     default:
+    //         break;
+    // }
 
+    coberturasExternasSueldo = [ 'AMA SALUD'];
+    coberturasExternasParticular = ['AMA SALUD'];
     
     const coberturasMayor60 = [ 'Avalian'];
 

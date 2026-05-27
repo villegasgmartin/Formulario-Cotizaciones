@@ -854,7 +854,7 @@ nav {
     color:#fff
   }
 
-  .accordion-header:hover::before {
+  .accordion-header:hover::after {
     color:#fff
   }
   
@@ -1210,15 +1210,15 @@ div.check-div label{
 
 .accordion-header {
   position: relative;
-  padding-left: 35px;
+  padding-left: 5px;
   cursor: pointer;
 }
 
-.accordion-header::before {
+.accordion-header::after {
   content: "▶";
   color: #007bff;
   position: absolute;
-  left: 10px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 14px;

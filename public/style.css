@@ -14,8 +14,18 @@ body{
     background-color: #F5F5FA;
 }
 
-h2, p, label{
+h2{
     font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+p, button{
+    font-family: "Inter", Sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+label{
+    font-family: "Inter", Sans-serif;
     font-weight: 700;
     font-style: normal;
 }
@@ -173,6 +183,9 @@ form{
     .fila-datos{
         height: auto;
     }
+    .fila-datos .fila-item{
+        max-width: 100%;
+    }
 }
 
 #edad{
@@ -286,6 +299,9 @@ Britanica Salud o Britanica* ==#E4002B */
   }
 }
 
+ .beneficios {
+        padding: 10px 10px 10px 20px;
+    }
 /* 📱 En pantallas pequeñas (celulares): 1 columna y menor margen */
 @media (max-width: 600px) {
   .planes-grid {
@@ -748,7 +764,7 @@ nav {
         display: none;
         flex-direction: column;
         position: fixed;
-        top: 60px;
+        top: 81px;
         left: 0;
         right: 0;
         margin: auto;
@@ -835,6 +851,10 @@ nav {
   
   .accordion-header:hover {
     background: #0F6BFF;
+    color:#fff
+  }
+
+  .accordion-header:hover::before {
     color:#fff
   }
   
@@ -1052,6 +1072,7 @@ div.check-div label{
 }
 .beneficios ul li{
     list-style: circle;
+    padding-left: 20px;
 }
 
 
@@ -1147,6 +1168,9 @@ div.check-div label{
   .faq-image{
     display: none;
   }
+  .accordion{
+    padding: 0px;
+  }
 }
 .faq-container {
   display: flex;
@@ -1183,4 +1207,23 @@ div.check-div label{
   cursor: pointer;
 
 }
+
+.accordion-header {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+}
+
+.accordion-header::before {
+  content: "▶";
+  color: #007bff;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+
 

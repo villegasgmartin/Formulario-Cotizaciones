@@ -8,6 +8,8 @@
     <meta name="description" content="En Tu Plan B te ofrecemos un cotizador online que te permite al instante conocer tu prepaga ideal. Compara entre varias coberturas y elegi hoy la tuya.">
     <link rel="stylesheet" href="style.css"> 
     <link rel="icon" href="https://tuplanb.com.ar/wp-content/uploads/2024/03/5-1.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FMN9ZCTS83"></script>
     <script>
@@ -30,6 +32,7 @@
             <a href="https://tuplanb.com.ar/#preguntasancla">Preguntas Frecuentes</a>
            
              <a href="https://tuplanb.com.ar/contacto">Consulta Ahora</a>
+             <a href="https://tuplanb.com.ar/trabaja-con-nosotros/">Trabaja con Nosotros</a>
         </div>
         <div class="mobile-menu">
             <div class="menu-icon" onclick="toggleMenu()">
@@ -46,115 +49,140 @@
             </div>
         </div>
     </nav>
-   <h1 class="title">¡Compará y elegí el  <span style="color:#FE705A;">plan perfecto!</span> </h1>
+   <h1 class="title">¡Compará y elegí el  <span style="color:#0F6BFF;">plan perfecto!</span> </h1>
    
 <section class="form-container">
+  <form class="form-cotiza" action="coberturas" method="POST">
+    <div class="select-cantidad">
+      <label for="">Necesito una cobertura para...</label>
+      <div class="custom-select" id="select-cantidad">
+        <div class="divoption" data-value="mi">
+          <i class="fa-regular fa-user"></i>
+          Mi
+        </div>
+        <div class="divoption" data-value="pareja">
+          <i class="fa-solid fa-user-group"></i>
+          Mi Pareja y Yo
+        </div>
+        <div class="divoption" data-value="hijos">
+          <i class="fa-solid fa-users"></i>
+          Mis hijos y yo
+        </div>
+        <div class="divoption" data-value="familia">
+          <i class="fa-solid fa-people-group"></i>
+          Mi familia y yo
+        </div>
+      </div>
+    </div>
+
+    <div class="fila-datos">
+      <div class="fila-item">
+   <input type="hidden" name="tipo" id="tipo" value="">
+   <span for="edad">Tengo</span>
+      <div>
+         
+      <input type="number" name="edad" min="17" max="100" id="edad" required>
+       <span>años</span>
+      </div>
+     
+     
+      </div>
+     <div class="fila-item">
+    <span>Vivo en </span>
+      <select name="localidad" id="select-localidad" required>
+        <option id="placeholder" value="base" disabled selected>Selecciona una opción</option>
+        <option value="ROSARIO">Rosario y zonas aledañas</option>
+        <option value="ENTRE RIOS">Entre Rios</option>
+        <option value="BUENOS AIRES">Buenos Aires</option>
+        <option value="SANTA FE">Santa Fe</option>
+        <option value="CORDOBA">Cordoba</option>
+        <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
+        <option value="SANTA CRUZ">Santa Cruz</option>
+        <option value="CHUBUT">Chubut</option>
+        <option value="RIO NEGRO">Rio Negro</option>
+        <option value="SAN LUIS">San Luis</option>
+        <option value="OTRA">Resto del Pais</option>
+      </select>
+     </div>
+    <div class="localidad divoption">
+      <label for="">Escriba Su localidad</label>
+      <input type="text" name="localidad" id="localidad">
+    </div>
+       <div class="fila-item">
+      <span>Trabajo como</span>
+      <select name="tributo" id="selectAfip" required>
+        <option id="placeholder" value="0" disabled>Selecciona una opción</option>
+        <option value="particular" selected>Particular</option>
+        <option value="monotributo">Monotributista</option>
+        <option value="sueldo">En relacion de dependecia</option>
+      </select>
+    </div>
   
- <form class="form-cotiza" action="coberturas" method="POST">
-        <div class="select-cantidad">
-            <label for="">Necesito una cobertura para...</label>
-            <div class="custom-select" id="select-cantidad">
-                <div class="divoption" data-value="mi">Mi</div>
-                <div class="divoption" data-value="pareja">Mi Pareja y Yo</div>
-                <div class="divoption" data-value="hijos">Mis hijos y yo</div>
-                <div class="divoption" data-value="familia">Mi familia y yo</div>
-            </div>
-              <input type="hidden" name="tipo" id="tipo" value="">
-            <span for="edad">Tengo</span><input type="number" name="edad"  min="17" max="100" id="edad" required><span>años</span>
+    </div>
 
+  
+
+ 
+
+    <div class="sueldo-bruto">
+      <label for="">Coloque su sueldo bruto</label>
+      <input type="number" id="sueldo" name="sueldoBruto">
+    </div>
+
+    <div class="monotributista">
+      <select name="monutributo" id="">
+        <option id="placeholder" value="vacio" disabled selected>Selecciona una opción</option>
+        <option value="Categorias A,B,C">Categorias A,B,C</option>
+        <option value="Categorias D">Categorias D</option>
+        <option value="Categorias E">Categorias E</option>
+        <option value="Categorias F">Categorias F</option>
+        <option value="Categorias G">Categorias G</option>
+        <option value="Categorias H">Categorias H</option>
+        <option value="Categorias I">Categorias I</option>
+        <option value="Categorias J">Categorias J</option>
+        <option value="Categorias K">Categorias K</option>
+      </select>
+      <input type="number" id="tipo-monutributo" disabled>
+    </div>
+
+    <div class="condicional">
+      <div class="pareja">
+        <span for="edadPareja">Mi pareja tiene</span>
+        <input type="number" name="edadPareja" id="" min="17" max="100">
+        <span>años</span>
+      </div>
+      <div class="hijos">
+        <div class="cantidad-hijos">
+          <label for="">Cantidad de hijos menores de 21 años</label>
+          <input type="number" name="hijosMenores" id="hijosMenores" min="0" max="10">
         </div>
-        <div class="condicional">
-            <div class="pareja">
-                <span for="edadPareja">Mi pareja tiene</span><input type="number" name="edadPareja" id="" min="17" max="100"><span>años</span>
-            </div>
-            <div class="hijos">
-                <div class="cantidad-hijos">
-                    <label for="">Cantidad de hijos menores de 21 años</label>
-                    <input type="number" name="hijosMenores" id="hijosMenores" min="0" max="10">
-                </div>
-                <div class="cantidad-hijos">
-                    <label for="">Cantidad de hijos mayores de 21 años</label>
-                    <input type="number" name="hijosMayores" id="hijosMayores" min="0" max="10">
-                </div>
-            </div>
-            <div class="familia">
-                <div>
-                    <span for="">Mi pareja tiene</span><input type="number" name="edadPareja" id=""><span>años</span>
-                </div>
-             
-                <div class="hijos">
-                    <div class="cantidad-hijos">
-                        <label for="">Cantidad de hijos menores de 21 años</label>
-                        <input type="number" name="hijosMenores" id="" min="0" max="10">
-                    </div>
-                    <div class="cantidad-hijos">
-                        <label for="">Cantidad de hijos mayores de 21 años</label>
-                        <input type="number" name="hijosMayores" id="" min="0" max="10">
-                    </div>
-                </div>
-            </div>
-
-
+        <div class="cantidad-hijos">
+          <label for="">Cantidad de hijos mayores de 21 años</label>
+          <input type="number" name="hijosMayores" id="hijosMayores" min="0" max="10">
         </div>
+      </div>
+      <div class="familia">
         <div>
-            <span>Vivo en </span><select name="localidad" id="select-localidad" required>
-                <option  id="placeholder" value="base" disabled selected>Selecciona una opción</option>
-                
-                <option value="ROSARIO">Rosario y zonas aledañas</option>
-                <option value="ENTRE RIOS">Entre Rios</option>
-                <option value="BUENOS AIRES">Buenos Aires</option>
-                <option value="SANTA FE">Santa Fe</option>
-                <option value="CORDOBA">Cordoba</option>
-                <option value="TIERRA DEL FUEGO">Tierra del Fuego</option>
-                <option value="SANTA CRUZ">Santa Cruz</option>
-                <option value="CHUBUT">Chubut</option>
-                <option value="RIO NEGRO">Rio Negro</option>
-                <option value="SAN LUIS">San Luis</option>
-                <option value="OTRA">Resto del Pais</option>
-            </select>
+          <span for="">Mi pareja tiene</span>
+          <input type="number" name="edadPareja" id="">
+          <span>años</span>
         </div>
-        
+        <div class="hijos">
+          <div class="cantidad-hijos">
+            <label for="">Cantidad de hijos menores de 21 años</label>
+            <input type="number" name="hijosMenores" id="" min="0" max="10">
+          </div>
+          <div class="cantidad-hijos">
+            <label for="">Cantidad de hijos mayores de 21 años</label>
+            <input type="number" name="hijosMayores" id="" min="0" max="10">
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <div class="localidad">
-            <label for="">Escriba Su localidad</label>
-            <input type="text" name="localidad" id="localidad">
-        </div>
-        
-        <div>
-            <span>Trabajo como</span>
-            <select name="tributo" id="selectAfip" required>
-                <option id="placeholder" value="0" disabled>Selecciona una opción</option>
-                <option value="particular" selected>Particular</option>
-                <option value="monotributo">Monotributista</option>
-                <option value="sueldo">En relacion de dependecia</option>
-            </select>
-        </div>
-       
-        <div class="sueldo-bruto">
-            <label for="">Coloque su sueldo bruto</label>
-            <input type="number" id="sueldo" name="sueldoBruto">
-        </div>
-        
-        <div class="monotributista">
-            <select name="monutributo" id="">
-                <option id="placeholder" value="vacio" disabled selected>Selecciona una opción</option>
-                <option value="Categorias A,B,C">Categorias A,B,C</option>
-                <option value="Categorias D">Categorias D</option>
-                <option value="Categorias E">Categorias E</option>
-                <option value="Categorias F">Categorias F</option>
-                <option value="Categorias G">Categorias G</option>
-                <option value="Categorias H">Categorias H</option>
-                <option value="Categorias I">Categorias I</option>
-                <option value="Categorias J">Categorias J</option>
-                <option value="Categorias K">Categorias K</option>
-            </select>
-            <input type="number" id="tipo-monutributo" disabled>
-        </div>
-
-        <input type="submit" value="Buscar y Comparar Planes" class="submit-btn">
-
-    </form>
-    <button class="otra-consulta">Otra consulta</button>
+    <input type="submit" value="Buscar y Comparar Planes" class="submit-btn">
+  </form>
+  <button class="otra-consulta">Otra consulta</button>
 </section>
    
 
@@ -231,7 +259,8 @@
                 
       {{/if}}
 
-
+<section class="faq-section">
+  <div class="faq-container">
      <div class="accordion">
         <h2 class="faq">Preguntas Frecuentes</h1>
         <div class="accordion-item">
@@ -283,11 +312,16 @@
           </div>
         </div>
       </div>
+      <div class="faq-image">
+      <img src="https://res.cloudinary.com/dj3akdhb9/image/upload/v1779884336/tuplab.png" alt="Preguntas Frecuentes">
+    </div>
+  </div>
+</section>
 
         <div class="footer-container">
 			<div>
 			<div>
-				Web desarrollada por <a style="color: #CCCCCC;" href="https://duwohdevelopers.com" target="_blank">Duwoh Developers</a> | Copyright @2024						
+				Web desarrollada por <a style="color: #CCCCCC;" href="https://duwohdevelopers.com" target="_blank">Duwoh Developers</a> | Copyright @2026						
             </div>
 			</div>
 		</div>

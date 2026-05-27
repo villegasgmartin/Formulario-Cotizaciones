@@ -62,6 +62,7 @@ const coberturasDisponibles = async (req, res) => {
     let { tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto} = req.body
 
     console.log('***********datos form********************************');
+    console.log("tipo", tipo)
     console.log(tipo, edad, edadPareja, hijosMayores, hijosMenores, localidad, tributo, monutributo , sueldoBruto);
 
     console.log(edad)

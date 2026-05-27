@@ -241,7 +241,7 @@ optionsCobertura.forEach(option => {
 
 //condicional cantidad de usuario de cobertura
 
-const options = document.querySelectorAll(".divoption");
+const options = document.querySelectorAll("#select-cantidad .divoption");
 const divPareja = document.querySelector('.pareja');
 const divFamilia = document.querySelector('.familia');
 const divHijos = document.querySelector('.hijos')
@@ -443,6 +443,27 @@ masInfoBtns.forEach((btn) => {
 
   window.open(urlWhatsapp, '_blank');
 });
+
+});
+
+
+
+//selector
+
+const optiones = document.querySelectorAll(".divoption");
+const tipoInput = document.getElementById("tipo");
+
+optiones.forEach(option => {
+
+    option.addEventListener("click", () => {
+
+        optiones.forEach(o => o.classList.remove("active"));
+
+        option.classList.add("active");
+
+        tipoInput.value = option.dataset.value;
+
+    });
 
 });
 

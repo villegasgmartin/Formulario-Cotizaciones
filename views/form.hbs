@@ -189,18 +189,19 @@
     <div id="planesDiv" class="planes-grid">
   
   {{#each CoberturasPropuestas}}
+  
     <div class="plan-card cobertura" style="border-color: {{descripcion.color}}">
       <div class="seccion-header">
           <div class="plan-header">
-        <h2 class="nompre-compania"  style="color: {{descripcion.color}}">{{plan}}</h2>
+        <h2 class="nompre-compania" >{{plan}}</h2>
         <p class="plan-nombre" style="color: {{descripcion.color}}">{{NombrePlan}}</p>
           <img class="foto-comp" src="" alt="">
-           <p class="costo"  style="color: {{descripcion.color}}">{{valor}} por mes</span> </p>
+           <p class="costo"  style="color: {{descripcion.color}}">{{valor}} <span style="font-size: 18px; color:#000">por mes</span> </p>
            <small>Valor estimado según tus datos</small>
       </div>
         <!-- Beneficios -->
         <div class="beneficios">
-          <h3 style="color: {{descripcion.color}}">BENEFICIOS DEL PLAN:</h3>
+          <h3 style="color: {{descripcion.color}}; padding-bottom: 15px">BENEFICIOS DEL PLAN:</h3>
           {{{descripcion.descripcion}}}
         </div>
       </div>

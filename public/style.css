@@ -263,7 +263,7 @@ Britanica Salud o Britanica* ==#E4002B */
 }
 .costo{
     font-weight: 700;
-    font-size: 20px;
+    font-size: 40px;
 }
 .descripcion{
     text-align: start;
@@ -1076,15 +1076,7 @@ small{
         max-width: 100%!important;
     }
 }
-.plan-card {
-  border: 2px solid;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-}
+
 
 .plan-header {
   padding: 15px;
@@ -1294,13 +1286,17 @@ small{
     }
 }
 .plan-card {
-  border: 2px solid;
+  border-top: 10px solid;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
   background: #fff;
   display: flex;
   flex-direction: column;
+}
+.nompre-compania{
+  font-size: 50px;
+  color:#000;
 }
 
 .plan-header {
@@ -1350,7 +1346,7 @@ small{
 }
 
 .plan-footer .costo {
-  font-size: 20px;
+  font-size: 70px;
   font-weight: bold;
   margin-bottom: 10px;
 }

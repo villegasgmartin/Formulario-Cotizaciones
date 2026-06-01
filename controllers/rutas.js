@@ -265,7 +265,7 @@ const coberturasDisponibles = async (req, res) => {
         // Parámetros para la consulta SQL
             params = [...opcionLocalidad, edad, edad];
         }
-        console.log("6", sqlQuery, params)
+      
 
         //condicional 
         const result = await pool.query(sqlQuery, params);
@@ -273,7 +273,7 @@ const coberturasDisponibles = async (req, res) => {
 
     
        const CoberturasPropuestasSet = new Set();
-       console.log("7", coberturas)
+   
        for (let i = 0; i < coberturas.length; i++) {
            let cantidad = 0;
            let descuento = 0;

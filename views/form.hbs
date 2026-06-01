@@ -190,11 +190,21 @@
   
   {{#each CoberturasPropuestas}}
     <div class="plan-card cobertura" style="border-color: {{descripcion.color}}">
-      <div class="plan-header" style="background-color: {{descripcion.color}}">
-        <h2 class="nompre-compania">{{plan}}</h2>
-        <p class="plan-nombre">{{NombrePlan}}</p>
+      <div class="seccion-header">
+          <div class="plan-header">
+        <h2 class="nompre-compania"  style="color: {{descripcion.color}}">{{plan}}</h2>
+        <p class="plan-nombre" style="color: {{descripcion.color}}">{{NombrePlan}}</p>
           <img class="foto-comp" src="" alt="">
+           <p class="costo"  style="color: {{descripcion.color}}">{{valor}} por mes</span> </p>
+           <small>Valor estimado según tus datos</small>
       </div>
+        <!-- Beneficios -->
+        <div class="beneficios">
+          <h3 style="color: {{descripcion.color}}">BENEFICIOS DEL PLAN:</h3>
+          {{{descripcion.descripcion}}}
+        </div>
+      </div>
+    
          {{!-- datos ocultos --}}
                     <p style="display: none;" class="edad">{{edad}}</p>
                     <p style="display: none;"  class="tipo">{{tipo}}</p>
@@ -206,12 +216,6 @@
                     <p style="display: none;"  class="hijos">{{hijos}}</p>
 
       <div class="plan-body">
-        <!-- Beneficios -->
-        <div class="beneficios">
-          <h3 style="color: {{descripcion.color}}">BENEFICIOS DEL PLAN:</h3>
-          {{{descripcion.descripcion}}}
-        </div>
-
         <!-- Características -->
         <div class="caracteristicas">
           <h3 style="color: {{descripcion.color}}">CARACTERISTICAS DEL PLAN:</h3>
@@ -219,8 +223,8 @@
            {{#each descripcion.carateristicas}}
                 <li>
                   <span>{{nombre}}</span>
-                  <div class="progress-bar" style="background-color:{{colorbg}}">
-                    <div class="progress-fill" style="width: {{porcentaje}}%; background-color: {{color}};"> <span class="progress-label">{{valor}}</span> </div>
+                  <div class="progress-bar" style="background-color:{{color}}">
+                    {{valor}}
                   
                   </div>
                 </li>
@@ -232,14 +236,14 @@
 
       <!-- Precio + acciones -->
       <div class="plan-footer">
-        <p class="costo">{{valor}}</p>
+       <button class="mas-info-btn" style="background-color: {{descripcion.color}}">Más Info</button>
             <!-- Checkbox para comparación -->
-                <div class="check-div"> 
+                <div class="check-div" style="border:2px solid {{descripcion.color}}"> 
                         <input type="checkbox" class="comparar-checkbox" value="{{NombrePlan}}" onchange="handleCompareCheckbox(this)">
-                        <label>Comparar</label>
+                        <label style="color:{{descripcion.color}}">Comparar</label>
                     </div>
                   
-        <button class="mas-info-btn" style="background-color: {{descripcion.color}}">Más Info</button>
+        
       </div>
         
    
@@ -248,11 +252,11 @@
 
 
 
-</div>
+      </div>
    {{#if VerMas}}
           <!-- Botón para comparar -->
           <div class="comparativa-contenedor" id="comparativa-container">
-        <div style="text-align: center; margin-top: 20px;">
+        <div style="text-align: center; margin-top: 20px; border: 2px solid {{descripcion.color}}">
                             <button id="compararBtn" disabled>Comparar</button>
                         </div>
 

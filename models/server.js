@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const {path, join} = require('path');
 const bodyParser = require('body-parser');
+const hbs = require('hbs');
 
 class Server {
 	constructor() {
@@ -24,6 +25,13 @@ class Server {
 	middelewares() {
 
 		this.app.set('view engine', 'hbs');
+
+		 const hbs = require('hbs');
+
+		hbs.registerHelper('formatMoney', function (value) {
+			const number = parseInt(value.toString().replace(/\$/g, ''), 10);
+			return '$' + number.toLocaleString('es-ES');
+		});
 
 		this.app.use(bodyParser.urlencoded({ extended: true }));
 		this.app.use(bodyParser.json());

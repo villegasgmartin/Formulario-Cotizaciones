@@ -167,12 +167,9 @@ function handleCompareCheckbox(checkbox) {
 
 
 const mostrarComparativa = ()=> {
-    console.log('entro')
     // Aquí usarías el JSON que te pasé arriba
     const planes = comparaciones;
-    console.log(planes)
     const planesFiltrados = planes.filter(p => planesSeleccionados.includes(p.plan));
-    console.log(planesSeleccionados, planesFiltrados, "planes")
 
     if (planesFiltrados.length === 0) return;
 
@@ -323,7 +320,6 @@ const sueldoBruto = document.querySelector('.sueldo-bruto');
 
 selectAfip.addEventListener('change', ()=>{
     let value = selectAfip.value;
-    console.log(value);
 
     if ( value == 'particular'){
         // particular.classList.add('active')
@@ -331,7 +327,6 @@ selectAfip.addEventListener('change', ()=>{
         sueldoBruto.classList.remove('active')
     }
     if(value == 'sueldo'){
-        console.log(sueldoBruto)
         sueldoBruto.classList.add('active');
         monotributista.classList.remove('active');
     }
@@ -372,7 +367,6 @@ form.addEventListener('submit', (e) => {
         alert("Por favor seleccione Localidad válida.");
         e.preventDefault(); // Evita que el formulario se envíe
     }
-    console.log(btnSubmit)
     btnSubmit.value = 'Consultado ....'
     
    
@@ -420,7 +414,6 @@ masInfoBtns.forEach((btn) => {
   const localidad = card.querySelector('.localidad')?.textContent ?? '';
   const hijos = card.querySelector('.hijos')?.textContent ?? '';
 
-  console.log(tipo, "tributo:", tributo);
 
   let mensajePersonalizado = '';
 
@@ -439,7 +432,6 @@ masInfoBtns.forEach((btn) => {
 
   const telefono = '+5493417520560';
   const urlWhatsapp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajePersonalizado)}`;
-  console.log(urlWhatsapp);
 
   window.open(urlWhatsapp, '_blank');
 });
@@ -496,7 +488,6 @@ const resultados = document.querySelectorAll('.cobertura');
 resultados.forEach(valor => {
     const compañia = valor.children[0].textContent;
     const foto = valor.children[1].src
-    console.log(valor)
 
     // Condicionales para cambiar el color dependiendo del nombre de la compañía
     switch (compañia) { 

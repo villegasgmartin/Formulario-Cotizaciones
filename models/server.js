@@ -28,10 +28,25 @@ class Server {
 
 		 const hbs = require('hbs');
 
-		hbs.registerHelper('formatMoney', function (value) {
-			const number = parseInt(value.toString().replace(/\$/g, ''), 10);
-			return '$' + number.toLocaleString('es-ES');
-		});
+		
+			hbs.registerHelper('formatMoney', function (value) {
+				if (value === undefined || value === null || value === '') {
+					console.error('formatMoney: valor recibido:', value);
+					return '$0';
+				}
+
+				const number = Number(
+					String(value).replace(/\$/g, '').replace(/\./g, '').replace(',', '.')
+				);
+
+				if (!Number.isFinite(number)) {
+					console.error('formatMoney: valor no numérico:', value);
+					return '$0';
+				}
+
+				return '$' + number.toLocaleString('es-AR');
+			});
+
 
 		this.app.use(bodyParser.urlencoded({ extended: true }));
 		this.app.use(bodyParser.json());

@@ -16,12 +16,10 @@ const pool = require('../database');
 
 
 const persona = (tipo, hijosMayores, plan, NombrePlan, hijosMenores) =>{
-    console.log("entro a persona" , tipo, hijosMayores, plan, NombrePlan, hijosMenores)
     const hijosTotales = hijosMayores + hijosMenores
     if(hijosTotales>5){
             hijosTotales = 5;
     }
-    console.log("hijos totales", hijosTotales)
     if((NombrePlan =='Pulso' || NombrePlan=='BS A Mayor') && hijosTotales==0 ){
         
         tipo = 'Individuo';
@@ -260,8 +258,6 @@ function encontrarNumeroMasGrande(num1, num2) {
 }
 
 const costo = async(tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores)=>{
-console.log('plan: ', plan, 'tributo', tributo)
-console.log(tipo)
 
     queryGeneral = `SELECT Cotizacion FROM cotizaciones 
     WHERE plan = ?
@@ -351,7 +347,6 @@ console.log(tipo)
         const maximo = Math.max(edad, edadPareja);
 
         params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
-         console.log()
         const valorIncial = await pool.query(queryGeneral, params)
         price = parseFloat(valorIncial[0][0].Cotizacion);
        
@@ -373,12 +368,10 @@ console.log(tipo)
     }
      //plan=='DOCTORED'*********************
      if(plan=='DOCTORED'){
-        console.log("**********Entro a Doctored ********")
         // if (tributo ==='monotributo' || tributo === 'sueldo'){
         //     tributo = 'Sueldo'
         //  }
 
-       console.log("tributo", tributo)
 
         if(NombrePlan=='PLAN500PLUS' && tributo=='sueldo'){
             
@@ -386,7 +379,6 @@ console.log(tipo)
             params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
             if(valorIncial[0].length > 0){
-                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
                 price = parseFloat(valorIncial[0][0].Cotizacion);
                 // if(tipoMonutributo){
                 //     descuento = aportesMonotributista(tipoMonutributo)
@@ -413,7 +405,6 @@ console.log(tipo)
             params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
             if(valorIncial[0].length > 0){
-                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
                 price = parseFloat(valorIncial[0][0].Cotizacion);
                 if(tipoMonutributo){
                     descuento = aportesMonotributista(tipoMonutributo)
@@ -441,7 +432,6 @@ console.log(tipo)
             params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
             if(valorIncial[0].length > 0){
-                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
                 price = parseFloat(valorIncial[0][0].Cotizacion);
                 if(tipoMonutributo){
                     descuento = aportesMonotributista(tipoMonutributo)
@@ -470,7 +460,6 @@ console.log(tipo)
             params = [plan, NombrePlan,maximo, maximo, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
             if(valorIncial[0].length > 0){
-                console.log("valor de doct", valorIncial,tipo, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, tipoMonutributo, sueldoBruto, hijosMenores )
                 price = parseFloat(valorIncial[0][0].Cotizacion);
                 if(tipoMonutributo){
                     descuento = aportesMonotributista(tipoMonutributo)
@@ -495,7 +484,6 @@ console.log(tipo)
     }
     //plan=='OMINT'*********************
     if(plan=='OMINT'){
-        console.log('entro a omint')
        let hijosOmint = hijosMayores + hijosMenores;
     
         if (tributo === 'sueldo'){
@@ -577,7 +565,6 @@ console.log(tipo)
 
         if(tipo == 'Individuo'){
             params = [plan, NombrePlan,edad, edad, tipo,tributo]
-            console.log(params, 'britanica');
             const valorIncial4 = await pool.query(queryGeneral, params)
             price4 = parseFloat(valorIncial4[0][0].Cotizacion) || 0;
         }else{
@@ -673,7 +660,6 @@ console.log(tipo)
         //sacamos bonificacion 3/6/24
         
         let price = price0 + price1 + price2 + price3 + price4 - descuento - descuentoSueldo;
-        console.log(price0 , price1 , price2 , price3 , price4 , descuento , descuentoSueldo,plan, NombrePlan,edad, edad, tipo,tributo, edadPareja) ;
         return "$" + Math.round(price);
     }
     //plan=='Avalian'*********************
@@ -770,7 +756,6 @@ console.log(tipo)
         if(edadPareja==0 && hijosTotalesPlenit==0 ){
             params = [plan, NombrePlan,edad, edad, tipo,tributo]
             const valorIncial = await pool.query(queryGeneral, params)
-            console.log('valor', params, valorIncial);
             price1 = parseFloat(valorIncial[0][0].Cotizacion); 
         }else{
             price1 = 0;
@@ -845,7 +830,6 @@ console.log(tipo)
             descuentoSueldo = 0
         }
         let price = price1 + price2 + price3 + price4 + price5 - descuento -descuentoSueldo;
-        console.log(price1, price2, price3, price4, price5, descuento, descuentoSueldo);
         return "$" + Math.round(price);
 
         

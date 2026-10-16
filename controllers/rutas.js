@@ -164,7 +164,6 @@ const coberturasDisponibles = async (req, res) => {
     }else{
         edadPareja = parseInt(edadPareja[1]);   
     }
-    console.log('form edad pareja', edadPareja)
     
     if(hijosMayores){
         hijosMayores = parseInt(hijosMayores[0]);
@@ -178,12 +177,10 @@ const coberturasDisponibles = async (req, res) => {
     //     tributo = 'Sueldo'
     // }
 
-    console.log("1")
 
     try {
 
         if ((edad >= 50 && edad <= 60) || (edadPareja && edadPareja >= 50 && edadPareja <= 60)){
-            console.log('1');
             opcionLocalidad = coberturasMayor60
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -196,9 +193,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
-        console.log("2")
         if ((edad > 60 && edad < 65) || (edadPareja && edadPareja > 60 && edadPareja < 65)){
-            console.log('2');
             opcionLocalidad = coberturasMayor65
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -211,9 +206,7 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
-        console.log("3")
         if ((edad >= 65) || (edadPareja && edadPareja >= 65)){
-            console.log('3');
             opcionLocalidad = coberturasMayor90
             sqlQuery = `
             SELECT plan, NombrePlan
@@ -226,7 +219,6 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
 
         }
-        console.log("4")
        
         //primer condicionante localidad y sueldo
         if ((tributo != 'particular' && edad < 50 && tributo != 'monotributo') && (!edadPareja || (edadPareja < 50))) {
@@ -247,7 +239,6 @@ const coberturasDisponibles = async (req, res) => {
             params = [...opcionLocalidad, edad, edad];
             
         }
-        console.log("5")
 
         //segundo condicionante localidad y particular
         if ((tributo != 'sueldo' && edad < 50) & (!edadPareja || (edadPareja < 50))){
@@ -299,14 +290,12 @@ const coberturasDisponibles = async (req, res) => {
            const planes = coberturaSeleccionas(plan, edad, tipoPersona, tributo);
            // Llama a la función costo con los parámetros necesarios, incluyendo el resultado de la función persona
 
-           console.log(cobertura,tipoPersona, descripcion, planes  )
 
            
             valorCobertura = await costo(tipoPersona, plan, NombrePlan, edad, edadPareja, hijosMayores, tributo, monutributo, sueldoBruto, hijosMenores);
 
            
 
-           console.log(valorCobertura)
          
            // Agrega la cobertura propuesta al conjunto CoberturasPropuestasSet
            CoberturasPropuestasSet.add(JSON.stringify({
@@ -334,7 +323,6 @@ const coberturasDisponibles = async (req, res) => {
 
     } catch (error) {
         res.status(500).json(error);
-        console.log(error);
     }
 
 } 
